@@ -1,0 +1,14 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    max-width: max-content;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.block {
+    display: flex;
+}
+
+.block i {
+    padding-right: 10px;
+}
