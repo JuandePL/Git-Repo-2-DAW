@@ -10,7 +10,8 @@
 
 <body>
     <h1>Ejercicio 13</h1>
-    <p>13. Crea una calculadora que sume, reste, divida y multiplique (las operaciones deben realizarse en funciones distintas).</p>
+    <p>13. Crea una calculadora que sume, reste, divida y multiplique (las operaciones deben realizarse en funciones
+        distintas).</p>
 
     <?php
     function add($num1, $num2) { return $num1 + $num2; }
@@ -28,7 +29,7 @@
     echo "Variable c: $c <br><br>";
 
     echo "$a $c $b = ";
-    switch ('-') {
+    switch ($c) {
         case '+':
             echo add($a, $b);
             break;
