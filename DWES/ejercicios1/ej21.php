@@ -13,14 +13,15 @@
     <p>21. Cree una matriz con numeros aleatorios de tamaño 3x3, posteriormente representala por pantalla.</p>
 
     <?php
-    function random() { 
+    function random() {
         return rand(0, 20);
     }
 
-    $matrix = array(array(random(), random(), random()),
-                    array(random(), random(), random()),
-                    array(random(), random(), random())
-                );
+    $matrix = array(
+        array(random(), random(), random()),
+        array(random(), random(), random()),
+        array(random(), random(), random())
+    );
 
     echo print_r($matrix);
     ?>

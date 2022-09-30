@@ -19,11 +19,11 @@
 
     $array = explode('-', $string);
 
-    for ($i=0; $i < count($array); $i++) { 
+    for ($i = 0; $i < count($array); $i++) {
         if ($i % 2 == 0) {
-            echo "<br>". strtoupper($array[$i]);
+            echo "<br>" . strtoupper($array[$i]);
         } else {
-            echo "<br>". strtolower($array[$i]);
+            echo "<br>" . strtolower($array[$i]);
         }
     }
     ?>

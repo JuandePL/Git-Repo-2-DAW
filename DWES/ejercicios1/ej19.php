@@ -25,7 +25,7 @@
         $a = 5;
         $b = -1;
 
-        echo "$a / $b = ". divideNumbers($a, $b);
+        echo "$a / $b = " . divideNumbers($a, $b);
     } catch (Exception $e) {
         echo "ERROR: No se pudo dividir.";
     }

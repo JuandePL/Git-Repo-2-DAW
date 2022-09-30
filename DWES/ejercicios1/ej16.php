@@ -33,7 +33,7 @@
 
     echo "Valor más alto: $higher<br>";
     echo "Valor más bajo: $lower<br>";
-    echo "Media del array: ".$total / count($array);
+    echo "Media del array: " . $total / count($array);
     ?>
 </body>
 

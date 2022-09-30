@@ -18,7 +18,7 @@
     $dni = 48123931;
 
     echo "DNI sin letra: $dni<br>";
-    echo "Número del DNI: ". $dni_letters[$dni % count($dni_letters)];
+    echo "Número del DNI: " . $dni_letters[$dni % count($dni_letters)];
     ?>
 </body>
 

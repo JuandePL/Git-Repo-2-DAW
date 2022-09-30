@@ -15,7 +15,9 @@
 
     <?php
     function divide($dividend, $divisor) {
-        if ($divisor == 0) { throw new Exception("ERROR: El divisor no puede ser 0"); }
+        if ($divisor == 0) {
+            throw new Exception("ERROR: El divisor no puede ser 0");
+        }
         return $dividend / $divisor;
     }
 

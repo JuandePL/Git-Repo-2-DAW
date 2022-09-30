@@ -19,16 +19,16 @@
         }
         return $value;
     }
-    
+
     $array = array(2, 20, 3, 9, 3333, 50, 200, 33, 9);
 
     echo "Array inicial: [" . implode(", ", $array) . "]";
-    
+
     for ($i = 0; $i < count($array); $i++) {
         $array[$i] = multiplyIfMultiple($array[$i], 2);
         $array[$i] = multiplyIfMultiple($array[$i], 3);
     }
-    
+
     echo "<br>Array final: [" . implode(", ", $array) . "]";
     ?>
 </body>
