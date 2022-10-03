@@ -17,12 +17,19 @@
         return rand(0, 20);
     }
 
-    $matrix = array(
-        array(random(), random(), random()),
-        array(random(), random(), random()),
-        array(random(), random(), random())
-    );
+    function generateArray($x, $y) {
+        $matrix = array();
 
+        for ($i = 0; $i < $x; $i++) {
+            for ($j = 0; $j < $y; $j++) {
+                $matrix[$i][$j] = random();
+            }
+        }
+
+        return $matrix;
+    }
+
+    $matrix = generateArray(3, 3);
     echo print_r($matrix);
     ?>
 </body>

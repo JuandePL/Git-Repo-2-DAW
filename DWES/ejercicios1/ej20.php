@@ -27,12 +27,12 @@
     }
 
     set_error_handler("customError");
-
-    try {
+    $a = $b;
+    /*try {
         echo divide(5, 0);
     } catch (\Throwable $th) {
         trigger_error("Error: no puedes dividir entre 0 <b>zopenco</b>");
-    }
+    }*/
     ?>
 </body>
 
