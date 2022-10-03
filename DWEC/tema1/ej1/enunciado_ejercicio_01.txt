@@ -1,6 +1,0 @@
-Crear una página, que contenga un párrafo y un botón.
-
-El botón tendrá el nombre "SUMAR".
-El parrafo estará vacío, y con JavaScript tendremos que incrementar el valor del parrafo en 1 cada vez que se pulse.
-
-Al inicio no tendrá valor, pero cuando pulses por primera vez el botón, debe aparecer un 1
