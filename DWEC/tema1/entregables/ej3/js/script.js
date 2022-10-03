@@ -1,42 +1,55 @@
-import { Question } from "./Question"
-
-Question
-
-const questionNumberTag = document.getElementById('questionId')
-const questionTag = document.getElementById('question')
-const trueRadio = document.getElementById('trueRadio')
-const falseRadio = document.getElementById('falseRadio')
-const respondButton = document.getElementById('respondButton')
-
-let index = 0
-const questionList = [
-    {
-        "JavaScript puede ejecutarse nativamente en navegadores web": false
-    },
-    {
-        "Levantarse a las 8 de la mañana es lo mejor que existe": false
-    },
-    {
-        "1 + 1 = 7": false
-    },
-    {
-        "El Betis es el mejor equipo del mundo": true
-    },
-    {
-        "Carlos Alberto Morán Lozano es el delegado de 2º DAM": false
-    },
-    {
-        "Este código es más complicado de lo que pedía el ejercicio": true
-    },
-    {
-        "DWES significa Desarrollo <a href='https://acortar.link/oIRv6U'>Webó</a> España Sevilla": false
-    }
-]
-
-function changeQuestion() {
-    console.log(questionList[index].toString());
-    questionNumberTag.innerHTML = index + 1;
-    questionTag.innerHTML = questionList[index]
+const pregunta1 = document.getElementById('pregunta1')
+document.getElementById('verdadero1').onclick = () => {
+    pregunta1.style.color = "green"
+}
+document.getElementById('falso1').onclick = () => {
+    pregunta1.style.color = "red"
 }
 
-changeQuestion()
+const pregunta2 = document.getElementById('pregunta2')
+document.getElementById('verdadero2').onclick = () => {
+    pregunta2.style.color = "red"
+}
+document.getElementById('falso2').onclick = () => {
+    pregunta2.style.color = "green"
+}
+
+const pregunta3 = document.getElementById('pregunta3')
+document.getElementById('verdadero3').onclick = () => {
+    pregunta3.style.color = "red"
+}
+document.getElementById('falso3').onclick = () => {
+    pregunta3.style.color = "green"
+}
+
+const pregunta4 = document.getElementById('pregunta4')
+document.getElementById('verdadero4').onclick = () => {
+    pregunta4.style.color = "green"
+}
+document.getElementById('falso4').onclick = () => {
+    pregunta4.style.color = "red"
+}
+
+const pregunta5 = document.getElementById('pregunta5')
+document.getElementById('verdadero5').onclick = () => {
+    pregunta5.style.color = "red"
+}
+document.getElementById('falso5').onclick = () => {
+    pregunta5.style.color = "green"
+}
+
+const pregunta6 = document.getElementById('pregunta6')
+document.getElementById('verdadero6').onclick = () => {
+    pregunta6.style.color = "red"
+}
+document.getElementById('falso6').onclick = () => {
+    pregunta6.style.color = "green"
+}
+
+const pregunta7 = document.getElementById('pregunta7')
+document.getElementById('verdadero7').onclick = () => {
+    pregunta7.style.color = "green"
+}
+document.getElementById('falso7').onclick = () => {
+    pregunta7.style.color = "red"
+}
