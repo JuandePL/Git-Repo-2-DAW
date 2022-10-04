@@ -22,11 +22,15 @@ $code = function () {
     }
     echo "Array: [" . implode(", ", $array) . "]<br><br>";
 
+    $primeExists = false;
     for ($i = 0; $i < 20; $i++) {
         if (isPrime($array[$i])) {
             echo "El número " . $array[$i] . " es primo.<br>";
+            $primeExists = true;
         }
     }
+
+    if ($primeExists == false) echo "No hay números primos.";
 };
 
 include("template.php");
