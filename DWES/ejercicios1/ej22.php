@@ -16,16 +16,11 @@ $code = function () {
         );
     }
 
-    function personWorks($value) {
-        return $value == 1;
-    }
-    function percentage($value, $total) {
-        return ($value / $total) * 100;
-    }
+    function personWorks($value) { return $value == 1; }
+    function percentage($value, $total) { return ($value / $total) * 100; }
     function salarioPromedio($sueldo, $trabajadores) {
-        if ($trabajadores != 0) {
-            return $sueldo / $trabajadores;
-        } else return 0;
+        if ($trabajadores != 0) return round(($sueldo / $trabajadores), 2);
+        else return 0;
     }
 
     $limite = 10;

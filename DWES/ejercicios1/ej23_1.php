@@ -20,3 +20,25 @@ function numberToLetter($num) {
     );
     return $dictionary[$num];
 }
+
+function generateArray($x, $y) {
+    $matrix = array();
+
+    for ($i = 0; $i < $x; $i++) {
+        for ($j = 0; $j < $y; $j++) {
+            $matrix[$i][$j] = random();
+        }
+    }
+
+    return $matrix;
+}
+
+function printMatrix($matrix) {
+    foreach ($matrix as $key => $value) {
+        echo "<br> Elemento $key = { ";
+        foreach ($value as $key2 => $value2) {
+            echo "\"$key2\" = \"$value2\", ";
+        }
+        echo " }";
+    }
+}
