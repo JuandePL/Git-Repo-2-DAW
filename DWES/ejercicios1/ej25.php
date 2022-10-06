@@ -4,20 +4,25 @@ $description = "25. Genere un array de tamaño 5x5 con números aleatorios, post
     suma de las columnas y de las filas.";
 
 $code = function () {
-    include("ej23_1.php");
+    include("functions.php");
 
+    $arrayFilas = $arrayColumnas = array();
     $array = generateArray(5, 5);
-    $sumaFilas = $sumaColumnas = 0;
-    
-    for ($i = 0; $i < count($array); $i++) {
-        $sumaFilas += $array[$i][0];
-        for ($j = 0; $j < count($array[$i]); $j++) {
-            $sumaColumnas += $array[$i][$j];
+    printMatrix($array);
+
+    for ($fila = 0; $fila < count($array); $fila++) {
+        $sumaColumna = $sumaFila = 0;
+        for ($columna = 0; $columna < count($array[$fila]); $columna++) {
+            $sumaColumna += $array[$columna][$fila];
+            $sumaFila += $array[$fila][$columna];
         }
+
+        array_push($arrayColumnas, $sumaColumna);
+        array_push($arrayFilas, $sumaFila);
     }
 
-    echo "<br>Suma de las columnas: $sumaColumnas<br>";
-    echo "Suma de las filas: $sumaFilas<br>";
+    echo "<br><br>Suma de las columnas: " . printArray($arrayColumnas) . "<br>";
+    echo "Suma de las Filas: " . printArray($arrayFilas);
 };
 
 include("template.php");

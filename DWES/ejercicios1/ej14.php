@@ -13,13 +13,15 @@
     <p>14. Genere un array de tamaño 10 con valores aleatorios, posteriormente muestre los valores y sus claves.</p>
 
     <?php
+    include("functions.php");
+    
     $array = array();
 
     for ($i = 0; $i < 10; $i++) {
         array_push($array, rand(0, 50));
     }
 
-    echo "Array resultante: [" . implode(", ", $array) . "]";
+    echo "Array resultante: " . printArray($array);
     ?>
 </body>
 

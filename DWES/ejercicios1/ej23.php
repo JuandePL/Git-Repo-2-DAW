@@ -6,10 +6,17 @@ $description = "23. En un primer archivo .php cree una función que genere núme
     y representala por la pantalla.";
 
 $code = function () {
-    include("ej23_1.php");
+    include("functions.php");
 
-    $num = random();
-    echo "El número $num equivale a la letra " . strtoupper(numberToLetter($num));
+    function generateKey($size) {
+        $key = "";
+        for ($i = 0; $i < $size; $i++) {
+            $key = $key . numberToLetter(random());
+        }
+        return $key;
+    }
+
+    echo "Clave generada: " . generateKey(10);
 };
 
 include("template.php");
