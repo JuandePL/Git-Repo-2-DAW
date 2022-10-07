@@ -21,12 +21,16 @@ function numberToLetter($num) {
     return $dictionary[$num];
 }
 
-function generateArray($x, $y) {
+function generateArray($x, $y = 0) {
     $matrix = array();
 
     for ($i = 0; $i < $x; $i++) {
-        for ($j = 0; $j < $y; $j++) {
-            $matrix[$i][$j] = random();
+        if ($y == 0) {
+            $matrix[$i] = random();
+        } else {
+            for ($j = 0; $j < $y; $j++) {
+                $matrix[$i][$j] = random();
+            }
         }
     }
 
@@ -62,4 +66,38 @@ function isPrime($number) {
     }
 
     return true;
+}
+
+function generateDni() {
+    return dniLetter(rand(10000000, 99999999));
+}
+
+/**
+ * Devuelve el DNI completo si es correcto.
+ */
+function dniLetter($dni) {
+    $dni_letters = array("T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E");
+    $completeDni = $dni . $dni_letters[$dni % count($dni_letters)];
+
+    if (checkDni($completeDni)) {
+        return $completeDni;
+    }
+}
+
+/**
+ * Comprueba si el DNI es correcto.
+ */
+function checkDni($numberDni) {
+    $dni = (string)$numberDni;
+
+    if (strlen((string)$dni) != 9) {
+        echo "El DNI no tiene 8 números<br>";
+        return;
+    }
+
+    if (is_numeric(substr($dni, -1))) {
+        echo "El último carácter no es un número.<br>";
+        return;
+    }
+    return $dni;
 }
