@@ -25,4 +25,4 @@ $code = function () {
     echo "Suma de las Filas: " . printArray($arrayFilas);
 };
 
-include("template.php");
+include("../template.php");

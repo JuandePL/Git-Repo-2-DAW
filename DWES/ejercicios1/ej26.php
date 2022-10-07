@@ -21,4 +21,4 @@ $code = function () {
     echo "La llamada ha durado <b>$minutos minutos</b> y ha costado <b>" . callFee($minutos) . " céntimos</b>";
 };
 
-include("template.php");
+include("../template.php");

@@ -24,4 +24,4 @@ $code = function () {
     if ($primeExists == false) echo "No hay números primos.";
 };
 
-include("template.php");
+include("../template.php");

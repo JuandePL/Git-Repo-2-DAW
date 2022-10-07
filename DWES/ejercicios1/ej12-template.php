@@ -11,4 +11,4 @@ $code = function () {
     echo "Número del DNI: " . $dni_letters[$dni % count($dni_letters)];
 };
 
-include("template.php");
+include("../template.php");

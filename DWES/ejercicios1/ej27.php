@@ -15,4 +15,4 @@ $code = function () {
     echo "Solución 2: $array[1]";
 };
 
-include("template.php");
+include("../template.php");

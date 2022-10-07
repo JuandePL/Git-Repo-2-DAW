@@ -50,4 +50,4 @@ $code = function () {
     echo "Sueldo promedio de mujeres: " . salarioPromedio($sueldoMujeres, $trabajaMujeres) . " €<br>";
 };
 
-include("template.php");
+include("../template.php");

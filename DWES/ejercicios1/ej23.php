@@ -19,4 +19,4 @@ $code = function () {
     echo "Clave generada: " . generateKey(10);
 };
 
-include("template.php");
+include("../template.php");
