@@ -6,7 +6,7 @@ $description = "23. En un primer archivo .php cree una función que genere núme
     y representala por la pantalla.";
 
 $code = function () {
-    include("functions.php");
+    include("../functions.php");
 
     function generateKey($size) {
         $key = "";

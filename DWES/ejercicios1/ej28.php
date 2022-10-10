@@ -3,7 +3,7 @@ $title = "Ejercicio 28";
 $description = "28. Calcule el resultado de una ecuación de 2o grado, utilice la función del ejercicio 27.";
 
 $code = function () {
-    include("functions.php");
+    include("../functions.php");
 
     function randomizer() { return rand(-6, 6); }
     $a = randomizer();

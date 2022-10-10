@@ -13,7 +13,7 @@
     <p>11. Cree un array con los siguientes valores (2, 20, 3, 9, 3333, 50, 200, 33, 9), si son multiplos de 2 multiplicar por 2 y por 3 si son multiplos de 3.</p>
 
     <?php
-    include("functions.php");
+    include("../functions.php");
 
     function multiplyIfMultiple($value, $number) {
         if ($value % $number == 0) {

@@ -4,7 +4,7 @@ $description = "25. Genere un array de tamaño 5x5 con números aleatorios, post
     suma de las columnas y de las filas.";
 
 $code = function () {
-    include("functions.php");
+    include("../functions.php");
 
     $arrayFilas = $arrayColumnas = array();
     $array = generateArray(5, 5);

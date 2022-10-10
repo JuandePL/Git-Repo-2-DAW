@@ -13,7 +13,7 @@
     <p>14. Genere un array de tamaño 10 con valores aleatorios, posteriormente muestre los valores y sus claves.</p>
 
     <?php
-    include("functions.php");
+    include("../functions.php");
     
     $array = array();
 

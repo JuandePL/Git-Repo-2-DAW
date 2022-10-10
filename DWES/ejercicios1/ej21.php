@@ -13,7 +13,7 @@
     <p>21. Cree una matriz con numeros aleatorios de tamaño 3x3, posteriormente representala por pantalla.</p>
 
     <?php
-    include("functions.php");
+    include("../functions.php");
     
     $matrix = generateArray(3, 3);
     echo print_r($matrix);

@@ -5,7 +5,7 @@ $description = "24. Genere un array de 20 números aleatorios y determine cuales
     mostrar “No hay números primos”.";
 
 $code = function () {
-    include("functions.php");
+    include("../functions.php");
 
     $array = array();
     for ($i = 0; $i < 20; $i++) {
