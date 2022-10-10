@@ -4,7 +4,7 @@ $description = "1. Cree un archivo toolsArray.php que deberá incorporar funcion
     siguientes operaciones:";
 
 $code = function () {
-    include("../functions.php");
+    include("../../functions.php");
 
     /*---------------------------------------------------------------------------------------*/
     echo "<h3>Genere un array de X valores aleatorios entre 0 y 10, siendo X el numero de

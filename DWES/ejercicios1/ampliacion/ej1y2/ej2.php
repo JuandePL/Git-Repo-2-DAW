@@ -44,6 +44,7 @@ $code = function () {
         $surnames = array("Rodríguez", "Calvo", "Suárez", "Martínez", "López", "Mellado", "Menta", "Palazón", "Pérez", "Alonso");
         return $surnames[rand(0, count($surnames) - 1)];
     }
+    
     function arraySurnames($size) {
         $array = array();
 
