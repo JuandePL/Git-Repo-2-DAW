@@ -10,6 +10,7 @@ if age < 16:
     print("No tienes que tributar porque eres menor de 16 años.")
 else:
     if incomes < 1000:
-        print("No tienes que tributar porque tus ingresos mensuales no sobrepasan los 1000€.")
+        print(
+            "No tienes que tributar porque tus ingresos mensuales no sobrepasan los 1000€.")
     else:
         print("Tienes que tributar.")

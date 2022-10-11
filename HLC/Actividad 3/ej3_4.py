@@ -7,4 +7,4 @@ result = ((10+20)/5)*7
 print(f"((10 + 20) / 5) * 7 = {result}")
 
 # Imprimir cubo
-print(f"Cubo de {result}: {pow(result, 3)}")
+print(f"Cubo de {result}: {result**3}")
