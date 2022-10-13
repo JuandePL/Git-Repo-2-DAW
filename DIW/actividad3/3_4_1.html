@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3.4</title>
+</head>
+
+<body>
+    <h1>Realiza un formulario, que contenga los siguientes elementos:</h1>
+    <hr>
+
+    <form action="3_4_2.html" method="post">
+        <h3>a) Tres cuadros de textos vacíos para introducir: Nombre, Apellido1 y Apellido2.</h3>
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+        <input type="text" name="apellido1" id="apellido1" placeholder="Apellido 1">
+        <input type="text" name="apellido2" id="apellido2" placeholder="Apellido 2">
+        <hr>
+
+        <h3>b) Utiliza 4 checkbox para indicar tus aficiones: Música, Deporte, Naturaleza y
+            Baile, recuerda que puedes marcar el número de ellas con las que te identifiques.</h3>
+        <input type="checkbox" name="aficiones" id="musica">
+        <label for="musica">Música</label>
+        <input type="checkbox" name="aficiones" id="deporte">
+        <label for="deporte">Deporte</label>
+        <input type="checkbox" name="aficiones" id="naturaleza">
+        <label for="naturaleza">Naturaleza</label>
+        <input type="checkbox" name="aficiones" id="baile">
+        <label for="baile">Baile</label>
+        <hr>
+
+        <h3>c) Define dos radiobutton, recuerda que son excluyentes, para indicar si tu
+            nacionalidad es Española ó Extranjera.</h3>
+        <input type="radio" name="nacionalidad" id="espanol">
+        <label for="espanol">Español</label>
+        <input type="radio" name="nacionalidad" id="extranjero">
+        <label for="extranjero">Extranjero</label>
+        <hr>
+
+        <h3>d) Define un botón cuya función sea abrir un Buscador de Libros de Lectura</h3>
+        <a href="https://books.google.es/" target="_blank"><button type="button">Buscador de libros de lectura</button></a>
+        <hr>
+
+        <h3>e) Incluir una lista desplegable para seleccionar tu postre preferido, que
+            contenga los siguientes valores: fruta natural, helado, yogur y tarta.</h3>
+        <select name="postre" id="postre">
+            <option value="frutaNatural">Fruta natural</option>
+            <option value="helado">Helado</option>
+            <option value="yogur">Yogur</option>
+            <option value="tarta">Tarta</option>
+        </select>
+        <hr>
+
+        <h3>f) Por ultimo incluye un botón que sea el que envíe los datos introducidos por el
+            usuario al servidor.</h3>
+        <button type="submit">Enviar</button>
+    </form>
+
+</body>
+
+</html>
