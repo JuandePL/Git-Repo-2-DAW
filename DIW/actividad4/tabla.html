@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <table border="1">
+        <!--
+            caption - Añade un título a la tabla
+            rowspan="2" - Extiende el valor por 2 filas
+            colspan="2" - Extiende el valor por 2 columnas
+        -->
+
+        <caption>Horario Escolar</caption>
+        <tr>
+            <td></td>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miércoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+        </tr>
+
+        <tr>
+            <td>8:15 - 9:15</td>
+            <td>DIW</td>
+            <td rowspan="2">DWEC</td>
+            <td rowspan="2">DWES</td>
+            <td rowspan="2">DWES</td>
+            <td>DWEC</td>
+        </tr>
+
+        <tr>
+            <td>9:15 - 10:15</td>
+            <td class="disabled">EIE</td>
+            <td class="disabled">DESPA</td>
+        </tr>
+
+        <tr>
+            <td>10:15 - 11:15</td>
+            <td>DWES</td>
+            <td>DIW</td>
+            <td>DWEC</td>
+            <td class="disabled">HLC</td>
+            <td class="disabled">EIE</td>
+        </tr>
+
+        <tr class="recreo">
+            <td>11:15 - 11:45</td>
+            <td colspan="5">RECREO</td>
+        </tr>
+
+        <tr>
+            <td>11:45 - 12:45</td>
+            <td>DWES</td>
+            <td class="disabled">DESPA</td>
+            <td rowspan="2">DIW</td>
+            <td class="disabled">EIE</td>
+            <td rowspan="2">DWES</td>
+        </tr>
+
+        <tr>
+            <td>12:45 - 13:45</td>
+            <td rowspan="2">DWEC</td>
+            <td>HLC</td>
+            <td rowspan="2">DIW</td>
+        </tr>
+
+        <tr>
+            <td>13:45 - 14:45</td>
+            <td class="disabled">EIE</td>
+            <td class="disabled">DESPA</td>
+            <td>HLC</td>
+        </tr>
+    </table>
+
+    <p class="disabled" style="width: 100px;">No hay</p>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+}
+
+.disabled {
+    background-color: lightgray;
+}
+
+.recreo {
+    background-color: lightblue;
+}
+
+td, th {
+    padding: 5px;
+}
