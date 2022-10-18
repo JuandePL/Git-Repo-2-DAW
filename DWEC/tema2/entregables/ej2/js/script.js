@@ -5,6 +5,6 @@ const usuario = {
     altura: 185
 }
 
-// Mostrar los datos del usuario por pantalla
-document.getElementById('usuario').innerHTML = `El usuario ${usuario.nombre}
-tiene ${usuario.edad} años y mide ${usuario.altura} centímetros.`
+// Mostrar los datos del usuario por consola
+console.log(`El usuario ${usuario.nombre} tiene ${usuario.edad} años
+y mide ${usuario.altura} centímetros.`)
