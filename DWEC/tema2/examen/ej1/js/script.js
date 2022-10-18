@@ -1,4 +1,5 @@
 const radio = 5 // Definimos radio
+document.getElementById('radio').innerHTML = radio // Mostramos radio por pantalla
 
 // Calculamos area y longitud
 const areaCircunferencia = Math.PI * Math.pow(radio, 2) // π * radio^2
