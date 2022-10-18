@@ -21,7 +21,7 @@ print("----------------------------------------------")
 if operation == 'r':
     print(f"El resto de {num1}/{num2} es {num1 % num2}")
 elif operation == 'e':
-    print(f"{num1}/{num2} = {num1 // num2}")
+    print(f"{num1}/{num2} = {num1 // num2} (Sin resto)")
 elif operation == 'd':
     print(f"{num1}/{num2} = {num1 / num2}")
 else:
