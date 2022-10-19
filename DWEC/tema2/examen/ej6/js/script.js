@@ -11,4 +11,4 @@ button.onmouseout = () => { button.innerHTML = encima }
 
 // Evento que se activa cuando el usuario hace click fuera del elemento
 // tras haber pulsado en el previamente
-button.onblur = () => { button.innerHTML = "Has hecho click fuera del ratón" }
+button.onblur = () => { button.innerHTML = "Has hecho click fuera del botón" }

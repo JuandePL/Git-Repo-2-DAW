@@ -7,7 +7,7 @@ document.getElementById('submit').onclick = () => {
     // Lo convertimos a una fecha
     const date = new Date(year, month, day)
 
-    // Mostramos lo resultados
+    // Mostramos los resultados
     let text = `La fecha es ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}\n`
     text += `El mes es el ${date.getMonth()} y el año es ${date.getFullYear()}`
     alert(text)

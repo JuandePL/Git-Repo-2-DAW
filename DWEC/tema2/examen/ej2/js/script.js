@@ -4,4 +4,4 @@ const random = Math.random() // Numero random de 0 a 1
 const message = random > 0.5 ? "Numero > 0.5" : "Numero < 0.5"
 
 // Mostrar numero y resultado por pantalla
-document.getElementById('result').innerHTML = `${random.toFixed(2)} <br> ${message}`
+document.getElementById('result').innerHTML = `${random.toFixed(2)} <br><br><b>${message}</b>`
