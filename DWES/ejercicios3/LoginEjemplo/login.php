@@ -14,4 +14,6 @@ if ($name == 'usuario' && $password == '1234') {
 } else {
     setcookie("login", false, time() + 6000);
 }
+
+header("Location: index.php");
 ?>

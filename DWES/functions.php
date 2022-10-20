@@ -101,3 +101,9 @@ function checkDni($numberDni) {
     }
     return $dni;
 }
+
+/////////////////////// TEMA 3
+
+function removeCookie($cookie) {
+    setcookie($cookie, '', time() - 100);
+}
