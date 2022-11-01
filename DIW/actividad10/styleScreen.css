@@ -1,6 +1,5 @@
-@media screen {
-    img {
-        display: block;
-        margin: 0 auto;
-    }
+/* Las imágenes deben aparecer centradas solo cuando se muestran en pantalla. */
+img {
+    display: block;
+    margin: 0 auto;
 }

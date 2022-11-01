@@ -1,7 +1,19 @@
-@import url("styleScreen.css");
+/* CSS especifico para pantallas de ordenador */
+@import url("styleScreen.css") screen;
 
+/* Los párrafos tienen que aparecer en negrita
+   y con un tamaño de 20 px en cualquier dispositivo. */
 p {
     font-size: 20px;
     font-weight: bold;
 }
 
+
+/*
+    Tanto los párrafos como las imágenes tienen que aparecer a la izquierda en todos
+    los dispositivos, salvo el caso especificado en el punto anterior para las imágenes en pantalla. 
+
+
+    Este apartado del ejercicio no lo pongo en el CSS porque por defecto los atributos <p> e <img>
+    están alineados a la izquierda siempre.
+*/
