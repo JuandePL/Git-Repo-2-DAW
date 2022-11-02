@@ -4,6 +4,7 @@ const wordElement = document.getElementById('word')
 const frase = 'En un lugar de la Mancha, de cuyo nombre no quiero acordarme, ' +
     'no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero ' +
     'adarga antigua, rocín flaco y galgo corredor.'
+document.getElementById('frase').innerHTML = frase
 
 // Quitar puntos y separar frase en array reemplazando con un regex las comas con espacio y los espacios
 // También lo he pasado todo a minúsculas para no distinguir entre mayus y minus a la hora de comprobar los caracteres

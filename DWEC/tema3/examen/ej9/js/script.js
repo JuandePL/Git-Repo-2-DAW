@@ -1,6 +1,6 @@
 const result = document.getElementById('result')
 
-const ciudades = ['28924;estepona', '41620;marchena', '41111;almensilla', '08080;barcelona', '41640;osuna']
+const ciudades = ['28924;Estepona', '41620;Marchena', '41111;Almensilla', '08080;Barcelona', '41640;Osuna']
 
 // Mostrar array
 document.getElementById('array').innerHTML = `Contenido del array: ${ciudades.toString()}`
@@ -11,7 +11,7 @@ document.getElementById('submit').onclick = () => {
 
     // Si la ciudad deseada se encuentra en la array, saca su codigo
     for (i in ciudades) {
-        if (ciudades[i].includes(ciudad.toLowerCase())) {
+        if (ciudades[i].toLowerCase().includes(ciudad.toLowerCase())) {
             // Separa el string del array principal en una array externa y saca el codigo (primer valor de nueva array)
             result.innerHTML = `Código postal de ${ciudad}: ${ciudades[i].split(';')[0]}`
             return // Salir del bucle

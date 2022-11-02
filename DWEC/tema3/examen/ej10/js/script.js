@@ -1,5 +1,3 @@
-const result = document.getElementById('result')
-
 // Crear cookies
 document.getElementById('submit').onclick = () => {
     const nombre = document.getElementById('name').value
@@ -7,7 +5,7 @@ document.getElementById('submit').onclick = () => {
 
     // Si los datos estan introducidos, añadir las cookies
     if (!nombre || !description) {
-        result.innerHTML = "Faltan datos por rellenar"
+        alert("Faltan datos por rellenar")
     } else {
         setCookie("name", nombre)
         setCookie("description", description)
@@ -19,6 +17,7 @@ document.getElementById('submit').onclick = () => {
 document.getElementById('delete').onclick = () => {
     document.cookie = "name=; max-age=0"
     document.cookie = "description=; max-age=0"
+    alert("Cookies eliminadas")
 }
 
 /**
