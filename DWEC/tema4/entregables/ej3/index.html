@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+
+    <style>
+        .oculto {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s linear, opacity 0.3s linear;
+        }
+
+        .visible {
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0.3s linear, opacity 0.3s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Ejercicio 3</h1>
+    <h3>Basándote en el código expuesto en este apartado, logra que tu programa
+        pueda mostrar u ocultar cuatro párrafos.</h3>
+    <hr>
+
+    <p id="parrafo1">Este es el primer párrafo</p>
+    <button onclick="ocultarParrafo(1)">Ocultar párrafo 1</button>
+
+    <p id="parrafo2">Este es el segundo párrafo</p>
+    <button onclick="ocultarParrafo(2)">Ocultar párrafo 2</button>
+
+    <p id="parrafo3">Este es el tercer párrafo</p>
+    <button onclick="ocultarParrafo(3)">Ocultar párrafo 3</button>
+
+    <p id="parrafo4">Este es el cuarto párrafo</p>
+    <button onclick="ocultarParrafo(4)">Ocultar párrafo 4</button>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
