@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+
+<body>
+    <h1>Ejercicio 4</h1>
+    <h3>Realiza un formulario en el que se valide una cantidad de euros, el nombre de un
+        usuario (que tendrá que ser mayor a 4 caracteres), su email y su teléfono.</h3>
+    <hr>
+
+    <!-- Todos los requisitos del ejercicio se pueden hacer en HTML -->
+    <form action="" id="form">
+        <label for="euros">Euros</label>
+        <input type="number" name="euros" id="euros" min="1" placeholder="25" required>€
+        <br><br>
+
+        <label for="name">Nombre</label>
+        <input type="text" name="name" id="name" minlength="5" placeholder="Juande" required>
+        <br><br>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="juandepruna@gmail.com" required>
+        <br><br>
+
+        <label for="phone">Teléfono</label>
+        <input type="tel" name="phone" id="phone" pattern="[0-9]{9}" placeholder="612345678" required>
+        <br><br>
+
+        <button id="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById('submit').onclick = (evt) => {
+            const name = document.getElementById('name').value
+            const euros = document.getElementById('euros').value
+            const email = document.getElementById('email').value
+            const phone = document.getElementById('phone').value
+
+            // Si todos los valores estan rellenos y los requisitos estan cumplidos,
+            // mostrar los datos por pantalla
+            if (name.trim() != "" && name.length > 4 && euros.trim() && email.trim() != "" && phone.trim() != "") {
+                evt.preventDefault() // Prevenir accion por defecto (que el formulario se envie)
+                document.getElementById('result').innerHTML =
+                    `${name} tiene ${euros}€. Su email es ${email} y su teléfono es ${phone}.`
+            }
+        }
+    </script>
+
+    <p id="result"></p>
+    <p>En este caso, todos los requisitos del formulario pueden hacerse en HTML. <br>
+        No hace falta usar Javascript para comprobar los datos del formulario,
+        solo para mostrarlos por pantalla.</p>
+</body>
+
+</html>

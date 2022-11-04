@@ -1,3 +1,4 @@
+// Inicializar variables
 const originalSize = 1, action = document.getElementById('action')
 let size = originalSize
 
@@ -28,6 +29,7 @@ function modificarTexto(evento, pixeles) {
             break
     }
 
+    // Aplicar nuevo tamaño de fuente al parrafo y mostrarlo por pantalla
     const fontSize = `${size}em`
     document.getElementById('result').style.fontSize = fontSize
     action.innerHTML += `<br><br>El tamaño actual es de ${fontSize}`
