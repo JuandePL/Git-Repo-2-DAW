@@ -6,12 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 4</title>
+
+    <link rel="stylesheet" href="../../../style.css">
+
 </head>
 
 <body>
     <h1>Ejercicio 4</h1>
     <h3>Realiza un formulario en el que se valide una cantidad de euros, el nombre de un
         usuario (que tendrá que ser mayor a 4 caracteres), su email y su teléfono.</h3>
+
+    <!-- Imagenes del ejercicio -->
+    <div class="resizable">
+        <img src="https://i.vgy.me/vTcZTY.png" alt="apartado" height="300"><br>
+        <img src="https://i.vgy.me/amfJ8M.png" alt="apartado" height="200">
+    </div>
     <hr>
 
     <!-- Todos los requisitos del ejercicio se pueden hacer en HTML -->
@@ -37,6 +46,7 @@
 
     <script>
         document.getElementById('submit').onclick = (evt) => {
+            // Recogemos valores
             const name = document.getElementById('name').value
             const euros = document.getElementById('euros').value
             const email = document.getElementById('email').value

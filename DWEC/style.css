@@ -1,0 +1,13 @@
+.resizable {
+    overflow-y: scroll;
+
+    height: 250px;
+    min-height: 250px;
+    max-height: 100%;
+
+    width: 500px;
+    min-width: 500px;
+    max-width: 100%;
+
+    resize: both;
+}
