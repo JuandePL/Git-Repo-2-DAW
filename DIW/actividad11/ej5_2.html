@@ -13,7 +13,14 @@
         }
 
         body {
-            color: blue;
+            border-width: 10px;
+            border-style: solid;
+            border-color: blue;
+            color: red;
+        }
+
+        h1 {
+            border: inherit;
         }
     </style>
 </head>
@@ -25,7 +32,16 @@
     <h3>Ejercicio Página 92</h3>
     <hr>
 
-
+    <h1>Titular de la pagina</h1>
+    <p>Un parrafo de texto no muy largo.</p>
+    <hr>
+    <p>En este ejemplo, tenemos definido un borde azul y un texto rojo dentro de la etiqueta body. <br>
+        <b>Los bordes por defecto no se heredan</b>, pero si ponemos un parametro <i><b>inherit</b></i> podemos heredar
+        sus
+        parametros. <br><br>
+        Es por esto que podemos ver otro borde dentro de las etiquetas h1, ya que en el CSS su borde esta configurado
+        para que sea heredado del body.
+    </p>
 </body>
 
 </html>
