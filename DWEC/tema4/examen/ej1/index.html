@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+    <h1>Ejercicio 1</h1>
+    <h3>En el apartado 4.9.1, se muestra cómo modificar el tamaño de un párrafo. El problema
+        es que solamente funciona para ese párrafo concreto. Añade un tercer parámetro a la
+        función para que pueda modificarse el párrafo que se quiera de la web introduciendo su
+        ID. Para comprobar si el script funciona correctamente, deberás crear más de un párrafo.</h3>
+    <div class="resizable">
+        <img src="https://i.vgy.me/MR8DiL.png" alt="ejemplo1" height="250">
+        <img src="https://i.vgy.me/2eTkre.png" alt="ejemplo2" height="400">
+        <img src="https://i.vgy.me/ppEtyG.png" alt="ejemplo3" height="300">
+    </div>
+    <hr>
+    <label for="parrafo">ID del parrafo a modificar</label>
+    <input type="number" name="parrafo" id="parrafo">
+    <br><br>
+    <button id="aumentar" onclick="modificarTexto('aumentar', 0.05)">Agrandar</button>
+    <button id="reducir" onclick="modificarTexto('reducir', 0.05)">Reducir</button>
+    <button id="original" onclick="modificarTexto('original', 0.05)">Original</button>
+    <p>--------------------------------------------</p>
+    <p id="parrafo1">Parrafo 1: <span id="tamano1"></span></p>
+    <p id="parrafo2">Parrafo 2: <span id="tamano2"></span></p>
+    <p id="parrafo3">Parrafo 3: <span id="tamano3"></span></p>
+    <p>--------------------------------------------</p>
+    <p id="action"></p>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
