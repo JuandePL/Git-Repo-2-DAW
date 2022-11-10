@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 12.3</title>
+
+    <style>
+        #border-box {
+            height: 150px;
+            width: 400px;
+            border-style: dotted;
+            background: lightblue;
+            padding: 15px;
+            text-align: center;
+            
+            background-clip: border-box;
+        }
+        
+        #content-box {
+            height: 150px;
+            width: 400px;
+            border-style: dotted;
+            background: lightblue;
+            padding: 15px;
+            text-align: center;
+            
+            background-clip: content-box;
+        }
+        
+        #padding-box {
+            height: 150px;
+            width: 400px;
+            border-style: dotted;
+            background: lightblue;
+            padding: 15px;
+            text-align: center;
+
+            background-clip: padding-box;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Actividad 12.3</h1>
+    <h3>Crea un modelo de cajas de CSS, define su border que sea discontinuo, con el
+        diseño que quieras y ayúdate de él para crear visualmente 3 cajas que expliquen los
+        valores border-box, content-box y padding-box de la propiedad background-clip.</h3>
+    <hr><br>
+    
+    <div id="border-box">
+        <h2>border-box</h2>
+        <p>El fondo se extiende por detras del borde.</p>
+    </div>
+    <br>
+    <div id="padding-box">
+        <h2>padding-box</h2>
+        <p>El fondo se extiende hasta el borde del contenido .</p>
+    </div>
+    <br>
+    <div id="content-box">
+        <h2>content-box</h2>
+        <p>El fondo se extiende hasta el interior del borde.</p>
+    </div>
+</body>
+
+</html>

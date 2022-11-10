@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 12.1</title>
+
+    <style>
+        div {
+            background-color: darkslategrey;
+            height: 500px;
+            width: 600px;
+            position: absolute;
+        }
+
+        #img1 {
+            position: inherit;
+            top: 10px;
+            right: 10px;
+        }
+
+        #img2 {
+            position: inherit;
+            opacity: 0.5;
+
+            /* Centrar */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            /* Poner al frente */
+            z-index: 1;
+        }
+
+        #img3 {
+            position: inherit;
+            bottom: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Actividad 12.1</h1>
+    <h3>Crea un contenedor con HTML que tenga un color de fondo sólido y que muestre 3
+        imágenes de diferentes tamaños y en distintas posiciones. Una de las imágenes debe
+        mostrar un grado de transparencia medio.</h3>
+    <hr>
+
+    <div>
+        <img id="img1" src="https://placekitten.com/200/150">
+        <img id="img2" src="https://placekitten.com/300/320">
+        <img id="img3" src="https://placekitten.com/300/200">
+    </div>
+</body>
+
+</html>
