@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 12.5</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            height: 100px;
+            background-image: url("https://placekitten.com/100/300");
+            background-position: center;
+            margin-bottom: 50px;
+        }
+
+        header>h1 {
+            color: white;
+            -webkit-text-stroke-width: 1.5px;
+            -webkit-text-stroke-color: black;
+
+            text-align: center;
+            padding-top: 25px;
+        }
+
+        h1>span {
+            display: inline;
+
+            border-bottom: 5px solid white;
+            padding: 0 10px;
+        }
+
+        .background {
+            height: 400px;
+            max-width: 80%;
+            margin: auto;
+
+            background-image: url("https://placekitten.com/100");
+
+            border-radius: 20px;
+            padding: 10px;
+        }
+        
+        #texto {
+            font-size: 1.3rem;
+            font-weight: bold;
+            
+            column-count: 3;
+            column-rule-style: solid;
+            column-rule-width: 5px;
+            column-rule-color: white;
+            
+            background-color: aqua;
+            padding: 10px;
+            border-radius: 20px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Actividad 12.5</h1>
+    <h3>Por último completa el ejercicio 2, incluyendo un párrafo dividido en columnas,
+        define la separación entre las columnas y líneas de separación. Incluye también algún
+        nuevo elemento con las esquinas redondeadas dos a dos.</h3>
+    <hr>
+
+    <header>
+        <h1><span>Esta es la cabecera</span></h1>
+    </header>
+
+    <div class="background">
+        <p id="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+            deserunt mollit anim id est laborum.</p>
+    </div>
+</body>
+
+</html>
