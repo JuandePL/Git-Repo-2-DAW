@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+</head>
+
+<body>
+    <h1>Ejercicio 7</h1>
+    <h3>Elabora un test interactivo para verificar si un alumno está sufriendo acoso escolar</h3>
+    <p>Se refiere a algún tipo de formulario que, según las respuestas que se den,
+        darán como resultado si el alumno sufre o no acoso escolar.</p>
+    <hr>
+
+    <h1>Test de acoso escolar</h1>
+
+    <h3>Pregunta 1: ¿Te quitan el (dinero del) almuerzo?</h3>
+    <label for="si1">Sí</label>
+    <input type="radio" name="pregunta1" id="si1">
+    <label for="no1">No</label>
+    <input type="radio" name="pregunta1" id="no1">
+    <br><br>
+
+    <h3>Pregunta 2: ¿Se meten contigo constantemente?</h3>
+    <label for="si2">Sí</label>
+    <input type="radio" name="pregunta2" id="si2">
+    <label for="no2">No</label>
+    <input type="radio" name="pregunta2" id="no2">
+    <br><br>
+
+    <button id="submit">Enviar</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('submit').onclick = () => {
+            // Si alguna de las dos respuestas estan marcadas, es acoso
+            const respuesta1 = document.getElementById('si1').checked
+            const respuesta2 = document.getElementById('si2').checked
+
+            document.getElementById('result').innerHTML = respuesta1 || respuesta2
+                ? "Te hacen acoso escolar"
+                : "NO te hacen acoso escolar"
+        }
+    </script>
+</body>
+
+</html>
