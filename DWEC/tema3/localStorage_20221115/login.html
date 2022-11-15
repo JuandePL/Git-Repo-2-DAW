@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div id="contenedor">
+        <div id="menu">
+            <div w3-include-html="webgrafia.html"></div>
+        </div>
+        <main id="principal">
+            <h1>Página de Login</h1>
+            <hr>
+            <form id="formulario" action="">
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" name="usuario" placeholder="Escribe aquí el usuario" size="40">
+                <br>
+                <label for="contrasenya">Contraseña</label>
+                <input type="email" id="contrasenya" name="contrasenya" placeholder="Escribe aquí la contraseña" size="40">
+                <br>
+                <input type="button" id="btnGuardar" value="Guardar">
+                <input type="button" id="btnComprobar" value="Comprobar">
+            </form>
+            <br>
+            <p id="datosUsuario">
+                <span><b>Usuario: </b></span>
+                <span id="usuarioValue"></span>
+            </p>
+            <p id="datosContraseña">
+                <span><b>Contraseña: </b></span>
+                <span id="contrasenyaValue"></span>
+            </p>
+        </main>
+    </div>
+
+    <script>
+        let btnGuardar = document.querySelector("#btnGuardar");
+        let btnComprobar = document.querySelector("#btnComprobar");
+        let inputUsuario = document.querySelector("#usuario");
+        let inputContrasenya = document.querySelector("#contrasenya");
+
+        let span_usuarioValue = document.querySelector("#usuarioValue");
+        let span_contrasenyaValue = document.querySelector("#contrasenyaValue");
+
+        btnGuardar.addEventListener("click", (evento)=>{
+            window.localStorage.setItem("usuario", inputUsuario.value);
+            window.localStorage.setItem("contrasenya", inputContrasenya.value);
+            window.alert("Campos guardados en localStorage");
+        });
+
+        btnComprobar.addEventListener("click", (evento)=>{
+            span_usuarioValue.innerHTML = window.localStorage.getItem("usuario");
+            span_contrasenyaValue.innerHTML = window.localStorage.getItem("contrasenya");
+        });
+
+
+        // RegEx a los campos del formulario: añade algunas comprobaciones que veas pertinentes.
+        
+        // El mensaje tras guardar y comprobar los campos debe aparecer como HTML.
+
+        // Tras comprobar el usuario y contraseña debe de dirigirse a la página de exito.html si es correcta y a error.html si es incorrecta.
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+.gruesa{
+    height: 0.6em;
+    border-radius: 0.5em;
+}
+.naranja{
+    background-color: orange;
+}
+.verde{
+    background-color: green;
+}
+
+#menu{
+    padding: 0.6em;
+    border: 0.6em solid green;
+    border-radius: 0.6em;
+    -webkit-border-radius: 0.6em;
+    -moz-border-radius: 0.6em;
+    -ms-border-radius: 0.6em;
+    -o-border-radius: 0.6em;
+}
+
+#principal{
+    padding: 0.6em;
+    border: 0.6em solid orange;
+    border-radius: 0.6em;
+    -webkit-border-radius: 0.6em;
+    -moz-border-radius: 0.6em;
+    -ms-border-radius: 0.6em;
+    -o-border-radius: 0.6em;
+}
+
+li{
+    margin: 0.6em;
+}
+
+
+
+/* FLEXBOX */
+#contenedor{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 1em;
+}
+
+#menu{
+    flex-grow: 1;
+}
+
+#principal{
+    flex-grow: 99;
+}
+
+
