@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 17</title>
+
+    <style>
+        /* Los enlaces aparecerán de color verde antes de ser visitados,
+        y en cualquier otro estado que no se defina en el enunciado.
+        También deben aparecer sin subrayar. */
+        a {
+            color: green;
+            text-decoration: none;
+        }
+
+        /* Al pasar el ratón sobre los enlaces, estos deben aparecer de color rojo y subrayados. */
+        a:visited {
+            color: black;
+            font-weight: bold;
+        }
+
+        /* Cuando ya se hayan visitado, aparecerán en negrita y de color negro. */
+        a:hover {
+            color: red;
+            text-decoration: underline;
+        }
+
+        /* Los elementos de tipo listado siempre aparecerán en cursiva. */
+        ul {
+            font-style: italic;
+        }
+
+        /* Titulos impares */
+        .titulo:nth-child(odd) {
+            color: black;
+            text-decoration: underline;
+        }
+
+        /* Titulos pares */
+        .titulo:nth-child(even) {
+            color: grey;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Actividad 17</h1>
+    <h3>Observa el fragmento de código en HTML y diseña una hoja de estilo en CSS para dar
+        el formato requerido en los apartados siguientes.</h3>
+    <ul>
+        <li>Los enlaces aparecerán de color verde antes de ser visitados, y en cualquier otro
+            estado que no se defina en el enunciado. También deben aparecer sin subrayar.</li>
+        <li>Al pasar el ratón sobre los enlaces, estos deben aparecer de color rojo y subrayados.</li>
+        <li>Cuando ya se hayan visitado, aparecerán en negrita y de color negro.</li>
+        <li>Los elementos de tipo listado siempre aparecerán en cursiva.</li>
+        <li>Se deben identificar los títulos (h1, h2...) con elementos de tipo ‘class’, que serán
+            utilizados en el documento CSS para definir su estilo. Los impares serán de color
+            negro y subrayados, y los pares de color gris y sin subrayar.</li>
+    </ul>
+    <hr>
+
+    <h1 class="titulo">MENÚ</h1>
+    <ul>
+        <li><a href="">Inicio</a></li>
+        <li><a href="">Titulaciones</a></li>
+        <li><a href="">Alumnos</a></li>
+        <li><a href="">Contacto</a></li>
+    </ul>
+    <h2 class="titulo">Descripción breve del sitio web</h2>
+    <h1 class="titulo">GALERÍA DE IMÁGENES</h1>
+    <ul>
+        <li><a href="">Galería 1</a></li>
+        <li><a href="">Galería 2</a></li>
+        <li><a href="">Galería 3</a></li>
+    </ul>
+
+</html>
