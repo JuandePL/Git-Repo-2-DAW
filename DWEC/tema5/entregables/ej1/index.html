@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 1</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            $("#btnSuma").click(() => {
+                $.ajax({
+                    method: "POST",
+                    url: "suma.php",
+                    data: $("#formulario").serialize(),
+                    success: (data) => {
+                        $("#respSuma").html(data);
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Actividad 1</h1>
+    <h3>Modifica la página web suma.html en la que se sumaban dos números utilizando
+        AJAX y jQuery con la función post(). Cambia la función post() por la función más
+        genérica ajax(), aunque el código sea algo más extenso.</h3>
+    <hr>
+
+    <form method="post" id="formulario">
+        Introduzca dos valores para calcular la suma:<br>
+        <input type="number" name="valor1" placeholder="valor1" autofocus />
+        <input type="number" name="valor2" placeholder="valor2" />
+        <input type="button" id="btnSuma" value="Suma" />
+    </form>
+    <br><br>
+    <div id="respSuma"></div>
+</body>
+
+</html>

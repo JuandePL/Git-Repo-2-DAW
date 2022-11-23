@@ -1,0 +1,14 @@
+<departamento>
+    <trabajador>
+        <nombre>Pedro</nombre>
+        <apellidos>Ruíz Aranda</apellidos>
+    </trabajador>
+    <trabajador>
+        <nombre>Isaac</nombre>
+        <apellidos>Sánchez Alcalde</apellidos>
+    </trabajador>
+    <trabajador>
+        <nombre>Lars</nombre>
+        <apellidos>Arnstron</apellidos>
+    </trabajador>
+</departamento>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 6</title>
+</head>
+
+<body>
+    <h1>Actividad 6</h1>
+    <h3>Partiendo del ejercicio resuelto de la encuesta del apartado 5.6, prueba que funcionan
+        los script anteriores, pero cambia la pregunta para que tenga 6 equipos.</h3>
+    <hr>
+    <div id="encuesta">
+        <h3>¿Qué equipo crees que va a ganar la liga este año?</h3>
+        <form action="">
+            Real Madrid:
+            <input type="radio" name="voto" value="0" onclick="getvoto(this.value)">
+            <br>
+            Barcelona:
+            <input type="radio" name="voto" value="1" onclick="getvoto(this.value)">
+            <br>
+            Atlético de Madrid:
+            <input type="radio" name="voto" value="2" onclick="getvoto(this.value)">
+            <br>
+            Sevilla:
+            <input type="radio" name="voto" value="3" onclick="getvoto(this.value)">
+            <br>
+            Real Sociedad:
+            <input type="radio" name="voto" value="4" onclick="getvoto(this.value)">
+            <br>
+            Real Betis:
+            <input type="radio" name="voto" value="5" onclick="getvoto(this.value)">
+            <br>
+        </form>
+    </div>
+
+    <script>
+        function getvoto(int) {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("encuesta").innerHTML = this.responseText;
+                }
+            }
+            xmlhttp.open("GET", `encuesta_voto.php?voto=${int}`, true);
+            xmlhttp.send();
+        }
+    </script>
+</body>
+
+</html>

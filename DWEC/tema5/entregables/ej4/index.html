@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 4</title>
+</head>
+
+<body>
+    <h1>Actividad 4</h1>
+    <h3>Crea un webworker que vaya mostrando en la página web los números pares de forma
+        incremental cada segundo.</h3>
+    <hr>
+
+    <button onclick="startWorker()">Iniciar worker</button>
+    <button onclick="stopWorker()">Detener worker</button><br>
+    <p id="result"></p>
+    <script>
+        let worker;
+
+        function startWorker() {
+            // Creamos Worker
+            worker = new Worker("worker.js")
+            
+            // Recibimos mensaje de worker.js
+            worker.onmessage = (event) => {
+                document.getElementById('result').innerHTML = event.data;
+            } 
+        }
+        
+        function stopWorker() {
+            worker.terminate();
+        }
+    </script>
+</body>
+
+</html>
