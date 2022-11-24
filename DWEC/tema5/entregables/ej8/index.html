@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 8</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Actividad 8</h1>
+    <h3>Diseña una página web que calcule la cuota mensual de un préstamo. Para ello, tendrás
+        que solicitar el capital, el interés y el número de meses necesarios para devolver
+        dicho préstamo. El resultado tendrá que ser parecido a la figura 5.13.</h3>
+    <img src="https://i.imgur.com/jENgWlh.png" alt="Figura 5.13">
+    <hr>
+
+    <form action="">
+        Cálculo de la cuota de un préstamo: <br>
+        <input type="number" id="capital" placeholder="Capital solicitado" required autofocus><br>
+        <input type="number" id="interes" placeholder="Interés anual (%)"><br>
+        <input type="number" id="plazo" placeholder="Plazo (meses)"><br>
+        <button type="button" id="calcular">Calcular</button>
+    </form>
+    <br><br>
+    <p id="result"></p>
+
+    <script>
+        $("#calcular").click(() => {
+            // Recoger valores
+            const capital = $("#capital").val();
+            const interesPorcentaje = $("#interes").val();
+            const plazoMeses = $("#plazo").val();
+
+            // Calcular interes al mes
+            const interes = capital * interesPorcentaje / (plazoMeses * 12);
+
+            // Calcular pago total
+            const total = ((capital / plazoMeses) + interes).toFixed(2);
+
+            $("#result").html(`Su cuota total será de: ${total} €`)
+        })
+    </script>
+</body>
+
+</html>

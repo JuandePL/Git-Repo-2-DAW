@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 10</title>
+</head>
+
+<body>
+    <h1>Actividad 10</h1>
+    <h3>Teniendo los siguientes datos en formato JSON fichero ciclos.json, cárgalos en una
+        lista en la página web.</h3>
+    <img src="https://i.imgur.com/Xszty3p.png" alt="">
+    <hr>
+
+    Cargando los datos de ciclos: <br>
+    <button id="cargarCursos">Pulse para Cargar</button><br><br>
+
+    <div id="result" style="visibility: hidden;">
+        Ciclos de informática:
+        <ul id="cursos"></ul>
+    </div>
+    <script>
+        document.getElementById('cargarCursos').onclick = () => {
+            // Peticion Fetch API para cargar ciclos.json
+            fetch('ciclos.json')
+                // Obtenemos la respuesta y devolvemos el objeto JSON
+                .then(function (response) { return response.json(); })
+                .then(function (json) {
+                    // Variables
+                    const list = document.getElementById('cursos');
+                    let text = "<br><br>";
+
+                    // Entrar en array ([]) incial
+                    for (const ciclosCompletos of json) {
+                        // Recorrer los ciclos ({}) en busca de las iniciales y sus nombres
+                        for (const iniciales in ciclosCompletos) {
+                            const li = document.createElement("li");
+                            li.innerText = `${iniciales} - ${ciclosCompletos[iniciales]}`;
+                            list.appendChild(li);
+                        }
+                    }
+
+                    // Mostramos los resultados por pantalla haciendo el div visible
+                    document.getElementById('result').style.visibility = "visible";
+                });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 9</title>
+</head>
+
+<body>
+    <h1>Actividad 9</h1>
+    <h3>Investiga si existe alguna función que permita cargar en un campo datos codificados
+        en formato JSON utilizando la petición GET HTTP.</h3>
+    <hr>
+
+    <p>Con <b>Fetch API</b> podemos hacer una petición GET para recibir los datos de un fichero JSON.</p>
+
+    <p id="result"></p>
+    <script>
+        fetch('trabajadores.json')
+            .then(function (response) { return response.json(); })
+            .then(function (json) {
+                let text = "Resultado del JSON:<br><br>";
+
+                // Recorrer datos JSON
+                Object.values(json).forEach(worker => {
+                    text += `${worker['nombre']} ${worker['apellidos']}<br>`;
+                });
+
+                document.getElementById('result').innerHTML = text;
+            });
+    </script>
+</body>
+
+</html>
