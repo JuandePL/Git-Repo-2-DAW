@@ -1,0 +1,1 @@
+for dir in $(find . -name ".git"); do cd ${dir%/*}; git fetch ; cd -; done
