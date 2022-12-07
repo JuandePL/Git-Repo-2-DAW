@@ -6,17 +6,33 @@
 # queremos hacer otra consulta.
 
 def otraConsulta():
-    respuesta = int(input("¿Quieres hacer otra consulta? (y/N): "))
+    respuesta = input("\n¿Quieres hacer otra consulta? (Y/n): ")
 
-    return True if respuesta == 'y' else False
+    return True if respuesta != 'n' else False
+
 
 # Precio en centimos
 diccionarioFrutas = {"pera": 50, "manzana": 70, "platano": 45, "mandarina": 60}
 
 # Bucle infinito hasta que el usuario salga del programa
-while True:    
-    fruta = input("Bienvenido al programa, introduce una fruta: ")
+while True:
+    try:
+        fruta = input("Bienvenido al programa, introduce una fruta: ")
 
-    if (fruta in diccionarioFrutas):
-        cantidad = input(f"Introduce la cantidad vendida de {fruta}s: ")
+        if (fruta not in diccionarioFrutas):
+            print("La fruta no existe")
+            continue
+        else:
+            cantidad = int(
+                input(f"Introduce la cantidad vendida de {fruta}s: "))
 
+            # Calcular precio y pasarlo a 2 decimales
+            precio = (diccionarioFrutas.get(fruta) * cantidad) / 100
+
+            print(f"El precio final de las {fruta}s es {precio}€")
+    except ValueError:
+        print("\nERROR: La cantidad introducida no es válida.")
+    finally:
+        if (not otraConsulta()):
+            print("Gracias por usar el programa.")
+            break
