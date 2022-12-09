@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <?php include "components/header.html" ?>
+    <?php include "view/templates/header.php" ?>
 </body>
 
 </html>
