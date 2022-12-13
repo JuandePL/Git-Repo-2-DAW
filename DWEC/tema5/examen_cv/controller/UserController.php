@@ -5,7 +5,7 @@ require_once __DIR__ . '/../model/User.php';
 class UserController {
     static private $table = 'users';
 
-    static function map(array $arrayValues) {
+    static function mapToUser(array $arrayValues) {
         return new User(
             $arrayValues['id'],
             $arrayValues['username'],
@@ -24,7 +24,7 @@ class UserController {
         if ($userStatement) {
             $userList = array();
             foreach ($userStatement as $user) {
-                $userList[] = self::map($user);
+                $userList[] = self::mapToUser($user);
             }
 
             return $userList;
@@ -35,7 +35,7 @@ class UserController {
 
     /**
      * Fetch user by Id.
-     * @param string $id The Id to find
+     * @param int $id The Id to find
      * @return User|false User object if successful, false if not.
      */
     static function fetchUserById(int $id) {
@@ -44,7 +44,7 @@ class UserController {
             array($id)
         )[0];
 
-        return $user ? self::map($user) : false;
+        return $user ? self::mapToUser($user) : false;
     }
 
     /**
@@ -58,6 +58,6 @@ class UserController {
             array($username)
         )[0];
 
-        return $user ? self::map($user) : false;
+        return $user ? self::mapToUser($user) : false;
     }
 }
