@@ -2,7 +2,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
 
-<?php require_once __DIR__ . '/../../controller/UserController.php' ?>
+<?php
+require_once __DIR__ . '/../../controller/SessionController.php';
+
+// Esto no funciona
+set_error_handler(function ($errno, $errstr) {
+    header("Location:/view/error.php?errno=$errno&errstr=$errstr");
+});
+?>
 
 <header class="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
     <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -24,22 +31,22 @@
     <div class="col-md-3 text-end">
         <?php
         // TODO: Check user login
-        if (true) { ?>
-            <a href="<?php '/view/login.php' ?>"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
-            <a href="<?php '/view/register.php' ?>"><button type="button" class="btn btn-primary">Sign-up</button></a>
+        if (!$userObject) { ?>
+            <a href="<?php echo '/view/login.php' ?>"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
+            <a href="<?php echo '/view/register.php' ?>"><button type="button" class="btn btn-primary">Sign-up</button></a>
         <?php } else { ?>
             <div class="dropdown">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" class="rounded-circle" width="32" height="32">
+                    <img src="<?php echo $userObject->avatar_url ?>" alt="<?php echo $userObject->username ?>" class="rounded-circle" width="32" height="32">
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Nuevo curriculum...</a></li>
+                    <li><a class="dropdown-item" href="#">Mis curriculums</a></li>
+                    <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    <li><a class="dropdown-item" href="/controller/SessionController.php?isLogout=true">Cerrar sesión</a></li>
                 </ul>
             </div>
         <?php } ?>

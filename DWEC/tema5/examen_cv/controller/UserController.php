@@ -60,4 +60,18 @@ class UserController {
 
         return $user ? self::mapToUser($user) : false;
     }
+
+    /**
+     * Fetch user by email.
+     * @param string $email The email to find
+     * @return User|false User object if successful, false if not.
+     */
+    static function fetchUserByEmail(string $email) {
+        $user = DB::prepare(
+            "SELECT * FROM " . self::$table . " WHERE email=?",
+            array($email)
+        )[0];
+
+        return $user ? self::mapToUser($user) : false;
+    }
 }
