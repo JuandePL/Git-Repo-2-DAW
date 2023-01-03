@@ -22,7 +22,7 @@
             <h1><?php echo $errno ?></h1>
             <h4><?php echo $errstr ?></h4>
             <p>Oops! The page you are looking for does not exist. It might have been moved or deleted.</p>
-            <a href="/index.php">Volver al inicio</a>
+            <a href="/">Volver al inicio</a>
         </div>
     </div>
 </body>
