@@ -1,16 +1,25 @@
 .form-signin {
     max-width: 500px;
     margin: auto;
+    text-align: center;
 }
 
-.form-signin input[type="text"] {
+.form-floating:not(:first-of-type):not(:last-of-type) input {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-bottom: -1px;
+}
+
+.form-floating:first-of-type input {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
+.form-floating:last-of-type input {
+    margin-bottom: 1rem;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }

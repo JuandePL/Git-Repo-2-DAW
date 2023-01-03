@@ -6,9 +6,10 @@ class UserController {
     static private $table = 'users';
 
     static function mapToUser(array $arrayValues) {
-        return new User(
+        return User::withID(
             $arrayValues['id'],
             $arrayValues['username'],
+            $arrayValues['password'],
             $arrayValues['email'],
             $arrayValues['avatar_url']
         );
@@ -73,5 +74,24 @@ class UserController {
         )[0];
 
         return $user ? self::mapToUser($user) : false;
+    }
+
+    static function registerUser(string $email, string $username, string $password, ?string $avatar_url) {
+        try {
+            if ($avatar_url) {
+                $user = DB::prepare(
+                    "INSERT INTO " . self::$table . " (username, password, email, avatar_url) VALUES(?, ?, ?, ?)",
+                    array($username, $password, $email, $avatar_url)
+                );
+            } else {
+                $user = DB::prepare(
+                    "INSERT INTO " . self::$table . " (username, password, email) VALUES(?, ?, ?)",
+                    array($username, $password, $email)
+                );
+            }
+        } catch (Throwable $th) {
+            //throw $th;
+            return;
+        }
     }
 }

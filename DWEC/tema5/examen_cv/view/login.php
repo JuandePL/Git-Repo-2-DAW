@@ -13,9 +13,8 @@
     <?php
     include "templates/header.php";
 
-    echo $userObject;
     if ($userObject) {
-        header("Location:../index.php");
+        header("Location:../");
     }
     ?>
 
@@ -32,7 +31,7 @@
                 </div>
             <?php } ?>
 
-            <form id="loginForm" method="post">
+            <form method="post">
                 <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
 
                 <div class="form-floating">
@@ -49,7 +48,8 @@
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div> -->
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
+                <button class="w-100 btn btn-lg btn-primary" style="margin-bottom: 1rem;" type="submit">Iniciar sesión</button>
+                <a href="/view/register.php">¿No tienes una cuenta? Regístrate</a>
             </form>
         </div>
     </main>
@@ -60,7 +60,7 @@
     <script>
         // Filtrar valores formulario (comprobar si es correo o usuario)
         // y pasar valores filtrados al SessionController
-        document.getElementById('loginForm').onsubmit = (evt) => {
+        document.getElementById('form').onsubmit = (evt) => {
             evt.preventDefault();
 
             // Recogemos valores
@@ -71,15 +71,16 @@
             const isEmail = (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).test(emailOrUserText);
 
             // Redirigir a SessionController para realizar el login
-            // TODO: FIX DISTINCION CORREO Y USUARIO
             $.ajax({
                 type: "POST",
-                url: `/controller/SessionController.php?isLogin=true&isEmail="${isEmail}"`,
+                url: `/controller/SessionController.php?isLogin=true&isEmail=${isEmail ? 1 : 0}`,
                 data: `${isEmail ? 'email' : 'username'}=${emailOrUserText}&password=${password}`,
                 cache: false,
                 success: (html) => {
-                    console.log('SALIO', html);
-                    document.getElementById('result').innerHTML = html;
+                    if (html.includes("Inicio de sesion correcto.")) location.href = "/";
+
+                    // Si el inicio de sesion no es correcto, muestra el error
+                    document.write(html);
                 }
             });
         }
