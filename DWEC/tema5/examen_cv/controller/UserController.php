@@ -76,22 +76,32 @@ class UserController {
         return $user ? self::mapToUser($user) : false;
     }
 
-    static function registerUser(string $email, string $username, string $password, ?string $avatar_url) {
+    static function registerUser(string $email, string $username, string $password) {
         try {
-            if ($avatar_url) {
-                DB::prepare(
-                    "INSERT INTO " . self::$table . " (username, password, email, avatar_url) VALUES(?, ?, ?, ?)",
-                    array($username, $password, $email, $avatar_url)
-                );
-            } else {
-                DB::prepare(
-                    "INSERT INTO " . self::$table . " (username, password, email) VALUES(?, ?, ?)",
-                    array($username, $password, $email)
-                );
-            }
+            DB::prepare(
+                "INSERT INTO " . self::$table . " (username, password, email) VALUES(?, ?, ?)",
+                array($username, $password, $email)
+            );
         } catch (Throwable $th) {
-            throw $th;
+            // throw $th;
             return "Ha ocurrido un error al registrar el usuario";
+        }
+    }
+
+    /**
+     * Funcion para añadir imagen al usuario
+     * @param string $imageUrl URL de la imagen
+     * @param string $username Usuario al que añadirle la imagen
+     */
+    static function addImageToUser(string $imageUrl, string $username) {
+        try {
+            DB::prepare(
+                "UPDATE " . self::$table . " SET `avatar_url` = ? WHERE `users`.`id` = ?",
+                array($imageUrl, self::fetchUserByUsername($username)->id)
+            );
+        } catch (Throwable $th) {
+            // throw $th;
+            return "Ha ocurrido un error al cambiar la imagen";
         }
     }
 }

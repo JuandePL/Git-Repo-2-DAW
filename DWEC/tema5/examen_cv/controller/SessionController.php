@@ -51,19 +51,22 @@ if ($isRegister) {
     $username = isset($_POST['username']) ? $_POST['username'] : false;
     $password = isset($_POST['password']) ?  hash("sha256", $_POST['password']) : false;
     $confirmPassword = isset($_POST['confirmPassword']) ?  hash("sha256", $_POST['confirmPassword']) : false;
-    $imageFile = uploadToImgur($_FILES["image"]);
 
     if ($password !== $confirmPassword) {
         header('Location:../view/register.php?error=Las contraseñas no coinciden');
         return;
     }
 
-    $registerResult = UserController::registerUser($email, $username, $password, $imageFile);
+    $registerResult = UserController::registerUser($email, $username, $password);
 
     // Si el registro falla, muestra el fallo
     if (is_string($registerResult)) {
         header('Location:../view/login.php?error=' . $registerResult);
         return;
+    }
+
+    if (!empty($_FILES["image"]["name"])) {
+        UserController::addImageToUser(uploadToImgur($_FILES["image"]), $username);
     }
 
     initSession($username);
