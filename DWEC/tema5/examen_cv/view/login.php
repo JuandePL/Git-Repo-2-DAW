@@ -31,7 +31,7 @@
                 </div>
             <?php } ?>
 
-            <form method="post">
+            <form id="form" method="post">
                 <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
 
                 <div class="form-floating">

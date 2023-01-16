@@ -10,7 +10,7 @@ class DB {
      * Funcion para conectarse a la DB leyendo los datos necesarios de un fichero JSON.
      */
     static function connect() {
-        $jsonPath = __DIR__ . "/../config/config.json";
+        $jsonPath = __DIR__ . "/DBConfig.json";
         $json = json_decode(file_get_contents($jsonPath), TRUE);
 
         $connectionString = "mysql:dbname=" . $json['database'] . ";host=" . $json['host'];

@@ -79,19 +79,19 @@ class UserController {
     static function registerUser(string $email, string $username, string $password, ?string $avatar_url) {
         try {
             if ($avatar_url) {
-                $user = DB::prepare(
+                DB::prepare(
                     "INSERT INTO " . self::$table . " (username, password, email, avatar_url) VALUES(?, ?, ?, ?)",
                     array($username, $password, $email, $avatar_url)
                 );
             } else {
-                $user = DB::prepare(
+                DB::prepare(
                     "INSERT INTO " . self::$table . " (username, password, email) VALUES(?, ?, ?)",
                     array($username, $password, $email)
                 );
             }
         } catch (Throwable $th) {
-            //throw $th;
-            return;
+            throw $th;
+            return "Ha ocurrido un error al registrar el usuario";
         }
     }
 }

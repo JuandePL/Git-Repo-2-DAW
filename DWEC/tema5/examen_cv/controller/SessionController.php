@@ -58,7 +58,14 @@ if ($isRegister) {
         return;
     }
 
-    UserController::registerUser($email, $username, $password, $imageFile);
+    $registerResult = UserController::registerUser($email, $username, $password, $imageFile);
+
+    // Si el registro falla, muestra el fallo
+    if (is_string($registerResult)) {
+        header('Location:../view/login.php?error=' . $registerResult);
+        return;
+    }
+
     initSession($username);
 }
 
