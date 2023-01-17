@@ -9,6 +9,8 @@ class UserController {
         return User::withID(
             $arrayValues['id'],
             $arrayValues['username'],
+            $arrayValues['name'],
+            $arrayValues['surname'],
             $arrayValues['password'],
             $arrayValues['email'],
             $arrayValues['avatar_url']
@@ -76,11 +78,11 @@ class UserController {
         return $user ? self::mapToUser($user) : false;
     }
 
-    static function registerUser(string $email, string $username, string $password) {
+    static function registerUser(string $email, string $username, string $name, string $surname, string $password) {
         try {
             DB::prepare(
-                "INSERT INTO " . self::$table . " (username, password, email) VALUES(?, ?, ?)",
-                array($username, $password, $email)
+                "INSERT INTO " . self::$table . " (username, name, surname, password, email) VALUES(?, ?, ?, ?, ?)",
+                array($username, $name, $surname, $password, $email)
             );
         } catch (Throwable $th) {
             // throw $th;

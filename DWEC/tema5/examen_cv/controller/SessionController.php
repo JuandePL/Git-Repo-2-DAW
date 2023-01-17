@@ -49,6 +49,8 @@ if ($isLogout) {
 if ($isRegister) {
     $email = isset($_POST['email']) ? $_POST['email'] : false;
     $username = isset($_POST['username']) ? $_POST['username'] : false;
+    $name = isset($_POST['name']) ? $_POST['name'] : false;
+    $surname = isset($_POST['surname']) ? $_POST['surname'] : false;
     $password = isset($_POST['password']) ?  hash("sha256", $_POST['password']) : false;
     $confirmPassword = isset($_POST['confirmPassword']) ?  hash("sha256", $_POST['confirmPassword']) : false;
 
@@ -57,7 +59,7 @@ if ($isRegister) {
         return;
     }
 
-    $registerResult = UserController::registerUser($email, $username, $password);
+    $registerResult = UserController::registerUser($email, $username, $name, $surname, $password);
 
     // Si el registro falla, muestra el fallo
     if (is_string($registerResult)) {
