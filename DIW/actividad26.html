@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 26</title>
+    <style>
+        audio {
+            transition: ease 0.3s;
+        }
+
+        #gamecubeLogo {
+            display: none;
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Actividad 26</h1>
+    <h3>Crea un fichero HTML donde aparezcan audios, debes implementar las etiquetas vistas en clase de sonido y sus
+        parámetros, por ejemplo: loop, autoplay, controls, src, source, width, height,...
+        A modo de ayuda puedes consultar el libro y
+        <a href="https://youtu.be/akFzU5K8VL0" target="_blank">ver los vídeos que te adjunto</a>:
+        hable de audios y vídeos (nos interesa sólo audio)
+    </h3>
+    <hr>
+
+    <audio controls
+        src="https://vgmsite.com/soundtracks/wii-original-system-soundtrack-wii-gamerip-2006/ghalfcqpaf/3-04.%20Local%20Forecast%20%28Daytime%29.mp3"
+        autoplay>
+        No se puede reproducir el audio.
+    </audio>
+    <br>
+    <audio controls src="https://rc24.xyz/sounds/wiimenu/news.wav"></audio>
+    <br>
+    <audio id="gamecube" ontimeupdate="onTimeUpdate(this)" style="width: 80%;" controls
+        src="https://vgmsite.com/soundtracks/nintendo-gamecube-system-soundtrack-gc-gamerip-2001/lkidtlisnn/1.%20Startup%20Sound%20%28Standard%29.mp3"></audio>
+    <br>
+    <img id="gamecubeLogo" width="500px" src="https://www.models-resource.com/resources/big_icons/5/4695.png"
+        alt="gamecube logo">
+    <button onclick="stopInterval()">PARATE</button>
+
+    <script>
+        const audios = document.querySelectorAll('audio')
+        const myInterval = setInterval(myTimer, 300);
+
+        function myTimer() {
+            let width = 0
+            do {
+                width = Math.round((Math.random() * 300)) + 200
+                audios[audios.length - 1].style.width = `${width}px`
+            } while (width > document.body.clientWidth);
+        }
+
+        function stopInterval() {
+            clearInterval(myInterval)
+            document.querySelector('button').style.display = 'none'
+        }
+
+        const gamecubeAudioElement = document.getElementById('gamecube')
+        const gamecubeLogoElement = document.getElementById('gamecubeLogo')
+        let gamecubeLogoOpacity = 0;
+        function onTimeUpdate(evt) {
+            gamecubeLogoElement.style.display = 'flex'
+            gamecubeLogoOpacity += .01;
+            gamecubeLogoElement.style.opacity = gamecubeLogoOpacity
+
+            if (evt.currentTime >= 4.15) {
+                gamecubeAudioElement.style.display = 'none'
+                gamecubeLogoElement.style.display = 'none'
+            }
+        }
+    </script>
+</body>
+
+</html>
