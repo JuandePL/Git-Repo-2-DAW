@@ -7,13 +7,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividad 26</title>
     <style>
+        :root {
+            --gamecubeLogoOpacity: .7;
+            --gamecubeLogoOpacityAnimation: 4.2s
+        }
         audio {
             transition: ease 0.3s;
         }
 
+        @-webkit-keyframes fadein {
+            0% { opacity: 0; }
+            100% { opacity: var(--gamecubeLogoOpacity); }
+        }
+        
+        @-moz-keyframes fadein {
+            0% { opacity: 0; }
+            100% { opacity: var(--gamecubeLogoOpacity); }
+        }
+        
+        @keyframes fadein {
+            0% { opacity: 0; }
+            100% { opacity: var(--gamecubeLogoOpacity); }
+        }
+        
         #gamecubeLogo {
+            z-index: 100;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: white;
+
             display: none;
             max-width: 100%;
+            opacity: var(--gamecubeLogoOpacity);
+            -webkit-animation: fadein var(--gamecubeLogoOpacityAnimation) ease-out;
+            -moz-animation: fadein var(--gamecubeLogoOpacityAnimation) ease-out;
+            animation: fadein var(--gamecubeLogoOpacityAnimation) ease-out;
+
+            pointer-events: none;
+        }
+
+        #gamecubeLogo > img {
+            object-fit: contain;
+            padding: 100px;
+            width: 100%;
+            height: calc(100%-200px);
         }
     </style>
 </head>
@@ -28,30 +68,38 @@
     </h3>
     <hr>
 
+    <p>&#127466;&#127480; Asegúrate de que tu navegador permite a esta pestaña la reproducción automática de audios para una mejor experiencia. <br>
+        &#127482;&#127480; Make sure your browser allows this tab to autoplay audios for a better experience.</p>
     <audio controls
-        src="https://vgmsite.com/soundtracks/wii-original-system-soundtrack-wii-gamerip-2006/ghalfcqpaf/3-04.%20Local%20Forecast%20%28Daytime%29.mp3"
-        autoplay>
+        src="https://vgmsite.com/soundtracks/wii-original-system-soundtrack-wii-gamerip-2006/gsytxojzzt/2-03.%20SD%20Card%20Gallery.mp3"
+        autoplay loop>
         No se puede reproducir el audio.
     </audio>
     <br>
     <audio controls src="https://rc24.xyz/sounds/wiimenu/news.wav"></audio>
     <br>
-    <audio id="gamecube" ontimeupdate="onTimeUpdate(this)" style="width: 80%;" controls
+    <audio id="gamecube" ontimeupdate="onTimeUpdate(this)" onplay="onGamecubePlay()" onpause="onGamecubePaused(this)"
+        onended="replayAudios()" style="width: 80%;" controls
         src="https://vgmsite.com/soundtracks/nintendo-gamecube-system-soundtrack-gc-gamerip-2001/lkidtlisnn/1.%20Startup%20Sound%20%28Standard%29.mp3"></audio>
     <br>
-    <img id="gamecubeLogo" width="500px" src="https://www.models-resource.com/resources/big_icons/5/4695.png"
-        alt="gamecube logo">
-    <button onclick="stopInterval()">PARATE</button>
+    <div id="gamecubeLogo">
+        <img src="https://www.models-resource.com/resources/big_icons/5/4695.png"
+            alt="gamecube logo">
+    </div>
+    <button id="parate" onclick="stopInterval()">PARATE</button>
+
+
 
     <script>
         const audios = document.querySelectorAll('audio')
         const myInterval = setInterval(myTimer, 300);
 
+        // Random width to Gamecube audio element
         function myTimer() {
             let width = 0
             do {
                 width = Math.round((Math.random() * 300)) + 200
-                audios[audios.length - 1].style.width = `${width}px`
+                gamecubeAudioElement.style.width = `${width}px`
             } while (width > document.body.clientWidth);
         }
 
@@ -60,17 +108,51 @@
             document.querySelector('button').style.display = 'none'
         }
 
+
+        // ------ GAMECUBE ------
         const gamecubeAudioElement = document.getElementById('gamecube')
         const gamecubeLogoElement = document.getElementById('gamecubeLogo')
-        let gamecubeLogoOpacity = 0;
-        function onTimeUpdate(evt) {
-            gamecubeLogoElement.style.display = 'flex'
-            gamecubeLogoOpacity += .01;
-            gamecubeLogoElement.style.opacity = gamecubeLogoOpacity
+        let audiosPlayingBeforeGamecube = [], gamecubeLogoOpacity = 0;
 
-            if (evt.currentTime >= 4.15) {
-                gamecubeAudioElement.style.display = 'none'
-                gamecubeLogoElement.style.display = 'none'
+        function onGamecubePlay() {
+            for (let i = 0; i < audios.length; i++) {
+                const audio = audios[i];
+
+                // If audio is playing, pause it
+                if (!audio.paused && audio.getAttribute('id') !== 'gamecube') {
+                    audio.pause()
+                    audiosPlayingBeforeGamecube.push(i)
+                }
+            }
+        }
+
+        // Function that executes when the Gamecube audio pauses
+        // Resets the audio and logo back to the beginning
+        function onGamecubePaused(audio) {
+            audio.currentTime = 0
+            gamecubeLogoElement.style.display = 'none'
+            replayAudios()
+        }
+
+        function replayAudios() {
+            // If audio was playing before, play it again
+            for (let i = 0; i < audiosPlayingBeforeGamecube.length; i++) {
+                audios[audiosPlayingBeforeGamecube[i]].play()
+            }
+        }
+
+        // Function that executes every time the audio current time updates
+        function onTimeUpdate(audio) {
+            if (audio.currentTime !== 0) {
+                // Update opacity every x seconds
+                gamecubeLogoElement.style.display = 'flex'
+    
+                // Disappear logo and audio when it drops
+                if (audio.currentTime >= 4.15) {
+                    gamecubeAudioElement.style.display = 'none'
+                    gamecubeLogoElement.style.display = 'none'
+                    stopInterval()
+                }
             }
         }
     </script>
