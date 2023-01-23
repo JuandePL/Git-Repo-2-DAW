@@ -44,8 +44,8 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-text">Nombre y apellidos</span>
-                    <input type="text" name="name" id="name" class="form-control" required>
-                    <input type="text" name="surname" id="surname" class="form-control" required>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required>
+                    <input type="text" name="surname" id="surname" class="form-control" placeholder="Apellidos" required>
                 </div>
                 <div class="form-floating">
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>

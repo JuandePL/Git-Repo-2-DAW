@@ -98,7 +98,7 @@ class UserController {
     static function addImageToUser(string $imageUrl, string $username) {
         try {
             DB::prepare(
-                "UPDATE " . self::$table . " SET `avatar_url` = ? WHERE `users`.`id` = ?",
+                "UPDATE " . self::$table . " SET avatar_url = ? WHERE ". self::$table .".`id` = ?",
                 array($imageUrl, self::fetchUserByUsername($username)->id)
             );
         } catch (Throwable $th) {
