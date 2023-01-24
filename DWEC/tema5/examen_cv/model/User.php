@@ -29,6 +29,6 @@ class User {
     }
 
     public function __toString() {
-        return $this->id . " - " . $this->username . " - " . $this->password . " - " . $this->email . " - " . $this->avatar_url;
+        return $this->id . " - " . $this->username . " - " . $this->name . " " . $this->surname . " - " . $this->password . " - " . $this->email . " - " . $this->avatar_url;
     }
 }
