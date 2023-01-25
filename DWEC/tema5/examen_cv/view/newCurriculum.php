@@ -8,7 +8,7 @@
     <title>Login - Curriculum</title>
     <link rel="stylesheet" href="/view/css/userForm.css">
     <style>
-        #pages > div {
+        #pages>div {
             height: 500px;
             /* max-height: 600px; */
             overflow: auto;
@@ -45,31 +45,32 @@
                         <h1 class="h3 mb-3 fw-normal text-center">Datos personales</h1>
 
                         <div class="form-floating">
-                            <input type="text" class="form-control" name="worker-name" id="worker-name" max="100" required>
-                            <label for="floatingInput">Nombre</label>
+                            <input type="text" class="form-control" name="worker-name" id="worker-name">
+                            <label>Nombre</label>
                         </div>
                         <div class="form-floating">
-                            <input type="text" class="form-control" name="worker-surname" id="worker-surname" max="100" required>
-                            <label for="floatingInput">Apellidos</label>
+                            <input type="text" class="form-control" name="worker-surname" id="worker-surname">
+                            <label>Apellidos</label>
                         </div>
                         <div class="form-floating">
-                            <input type="text" class="form-control" name="cv-description" id="cv-description" max="1000" required>
-                            <label for="floatingInput">Descripción del CV (rol en tu trabajo)</label>
+                            <input type="text" class="form-control" name="cv-description" id="cv-description" required>
+                            <label>Puesto de trabajo que buscas</label>
                         </div>
                         <div class="form-check mt-3 mb-3">
                             <input class="form-check-input" type="checkbox" id="useWorkerNames">
-                            <label class="form-check-label" for="flexCheckDefault">Usar nombre actual</label>
+                            <label class="form-check-label" for="useWorkerNames">Usar nombre actual</label>
                         </div>
                     </div>
 
                     <div id="page-2">
-                        siu
+                        <h1 class="h3 mb-3 fw-normal text-center">Sobre tí</h1>
+                        <textarea class="form-control" rows="5" placeholder="Destaca por qué eres la persona adecuada para el trabajo. Cuenta cómo eres, tus aficiones y hobbies, cómo trabajas..."></textarea>
                     </div>
                     <div id="page-3">
-                        siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>siuu <br>
+                        <h1 class="h3 mb-3 fw-normal text-center">Formación académica</h1>
                     </div>
                     <div id="page-4">
-                        siuuu
+                        <h1 class="h3 mb-3 fw-normal text-center">Experiencia</h1>
                     </div>
                 </div>
 
