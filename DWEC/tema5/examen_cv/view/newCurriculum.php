@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="/view/css/userForm.css">
     <style>
         #pages>div {
-            height: 500px;
-            /* max-height: 600px; */
+            height: 80vh;
+            padding: 0 1em;
+            max-height: 100vh;
             overflow: auto;
         }
     </style>
@@ -34,12 +35,13 @@
             ?>
 
             <!-- Error Box -->
-            <div id="errorBox" class="alert alert-danger text-center" role="alert" style="display: <?php echo $error ? 'block' : 'none' ?>">
+            <div id="errorBox" class="alert alert-danger text-center alert-dismissible fade show" role="alert" style="display: <?php echo $error ? 'block' : 'none' ?>">
                 <span id="error"><?php echo $error ?? ''; ?></span>
+                <button id="close-box" type="button" class="btn-close"></button>
             </div>
 
             <!-- Formulario -->
-            <form action="/controller/CVController.php?isNew=true" method="post">
+            <form id="completeForm" action="/controller/CVController.php?isNew=true" method="post">
                 <div id="pages">
                     <div id="page-1">
                         <h1 class="h3 mb-3 fw-normal text-center">Datos personales</h1>
@@ -53,7 +55,7 @@
                             <label>Apellidos</label>
                         </div>
                         <div class="form-floating">
-                            <input type="text" class="form-control" name="cv-description" id="cv-description" required>
+                            <input type="text" class="form-control" name="job-to-look-for" id="job-to-look-for">
                             <label>Puesto de trabajo que buscas</label>
                         </div>
                         <div class="form-check mt-3 mb-3">
@@ -64,13 +66,114 @@
 
                     <div id="page-2">
                         <h1 class="h3 mb-3 fw-normal text-center">Sobre tí</h1>
-                        <textarea class="form-control" rows="5" placeholder="Destaca por qué eres la persona adecuada para el trabajo. Cuenta cómo eres, tus aficiones y hobbies, cómo trabajas..."></textarea>
+                        <textarea class="form-control" name="about-me" id="about-me" rows="5" placeholder="Destaca por qué eres la persona adecuada para el trabajo. Cuenta cómo eres, tus aficiones y hobbies, cómo trabajas..."></textarea>
                     </div>
+
                     <div id="page-3">
                         <h1 class="h3 mb-3 fw-normal text-center">Formación académica</h1>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                            <button id="close-formation-form" type="button" class="btn btn-danger w-100 d-flex align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle me-1" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                                </svg>Cerrar formulario
+                            </button>
+                            <button id="open-formation-form" type="button" class="btn btn-primary w-100 d-flex align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle me-1" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>Nueva formación
+                            </button>
+                        </div>
+                        <div id="formation-form">
+                            <div class="mb-3">
+                                <label for="form-academic-center" class="form-label">Centro académico</label>
+                                <input type="text" class="form-control" id="form-academic-center">
+                            </div>
+                            <div class="mb-3">
+                                <label for="form-academic-title" class="form-label">Título de formación</label>
+                                <input type="text" class="form-control" id="form-academic-title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="form-formation-date-start" class="form-label">Fecha de inicio (elige mes y año)</label>
+                                <input id="form-formation-date-start" class="form-control" type="date" />
+                            </div>
+
+                            <label for="form-formation-date-finish" class="form-label">Fecha de finalización (elige mes y año)</label>
+                            <input id="form-formation-date-finish" class="form-control" type="date" />
+                            <div class="form-check mt-3 mb-3">
+                                <input class="form-check-input" type="checkbox" id="form-formation-date-finish-present">
+                                <label class="form-check-label" for="form-formation-date-finish-present">Formación sin finalizar</label>
+                            </div>
+
+                            <button type="button" id="create-new-formation" class="w-100 btn btn-lg btn-primary">Añadir formación</button>
+                        </div>
+                        <!-- <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Accordion Item #1
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Accordion Item #2
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Accordion Item #3
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
+
                     <div id="page-4">
                         <h1 class="h3 mb-3 fw-normal text-center">Experiencia</h1>
+                        <div id="experience-form">
+                            <div class="mb-3">
+                                <label for="form-company-name" class="form-label">Nombre de la empresa</label>
+                                <input type="text" class="form-control" id="form-company-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="form-worker-role" class="form-label">Cargo ocupado</label>
+                                <input type="text" class="form-control" id="form-worker-role">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formationStartDate" class="form-label">Fecha de inicio (elige mes y año)</label>
+                                <input id="formationStartDate" class="form-control" type="date" />
+                            </div>
+
+                            <label for="formationfinishDate" class="form-label">Fecha de finalización (elige mes y año)</label>
+                            <input id="formationFinishDate" class="form-control" type="date" />
+                            <div class="form-check mt-3 mb-3">
+                                <input class="form-check-input" type="checkbox" id="formationFinishDatePresent">
+                                <label class="form-check-label" for="formationFinishDatePresent">Formación sin finalizar</label>
+                            </div>
+
+                            <button type="button" id="add-formation" class="w-100 btn btn-primary">Añadir formación</button>
+
+                        </div>
                     </div>
                 </div>
 
@@ -79,10 +182,10 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                         </svg>
-                        <span style="text-decoration: underline;">Atrás</span>
+                        <span class="text-decoration-underline">Atrás</span>
                     </a>
                     <a id="nextPage" class="btn btn-lg link-primary p-0 m-0" role="button">
-                        <span style="text-decoration: underline;">Siguiente</span>
+                        <span class="text-decoration-underline">Siguiente</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                         </svg>

@@ -1,8 +1,8 @@
-// ---------- PAGINACION ----------
+// ------------------------------ PAGINACION ------------------------------
 const previousPageButton = document.getElementById('previousPage')
 const nextPageButton = document.getElementById('nextPage')
 const sendForm = document.getElementById('sendForm')
-const form = document.querySelector('form')
+const form = document.getElementById('completeForm')
 
 let page = {
     value: 1,
@@ -50,18 +50,25 @@ previousPageButton.onclick = () => page.currentValue--
 nextPageButton.onclick = () => page.currentValue++
 
 function showErrorBox(errorMessage, errorStack = '') {
-    document.getElementById('errorBox').style.display = 'block'
+    const errorBox = document.getElementById('errorBox')
+    errorBox.classList.remove('d-none')
+    errorBox.style.display = 'block'
+
     document.getElementById('error').innerHTML = errorMessage
     console.error(errorMessage, errorStack)
+
+    // Cerrar box
+    document.getElementById('close-box').onclick = hideErrorBox
 }
 
 function hideErrorBox() {
-    document.getElementById('errorBox').style.display = 'none'
+    errorBox.classList.add('d-none')
 }
 
-// ----------- Pagina 1 Check ----------
+// ------------------------------- Pagina 1 Check ------------------------------
 const nameElement = document.getElementById('worker-name')
 const surnameElement = document.getElementById('worker-surname')
+const jobElement = document.getElementById('job-to-look-for')
 const useWorkerNamesCheckbox = document.getElementById('useWorkerNames')
 
 // Remover cualquier cache previo
@@ -108,22 +115,109 @@ useWorkerNamesCheckbox.onclick = () => {
     }
 }
 
-form.onsubmit = (evt) => {
-    evt.preventDefault()
-    console.log('form');
 
-    // TODO: Intentar hacer esto
-    // https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
-    if (nameElement.validity.valueMissing()) {
-        showErrorBox('aaaaa')
+
+// ------------------------------ Pagina 3 Check ------------------------------
+const openFormationFormButton = document.getElementById('open-formation-form')
+const closeFormationFormButton = document.getElementById('close-formation-form')
+const createNewFormationFormButton = document.getElementById('create-new-formation')
+
+const formationForm = document.getElementById('formation-form')
+const formationStartDateForm = document.getElementById('form-formation-date-start')
+const formationFinishDateForm = document.getElementById('form-formation-date-finish')
+const formationNotEndedCheckbox = document.getElementById('form-formation-date-finish-present')
+
+let formation = {
+    formationList: [],
+
+    get getList() { return this.formationList; },
+    set add(formation) {
+        this.formationList.push(formation)
+
+        if (this.formationList.length >= 1) {
+            console.log('idk');
+        }
     }
-    
-    if (!form.reportValidity()) {
-        console.log('asdked');
-        showErrorBox('Faltan datos por rellenar')
+}
+
+// Boton para abrir formulario de creacion de formacion
+// TODO: no cagarme encima haciendo esto
+openFormationFormButton.onclick = () => {
+    // Comprobar si el formulario para añadir formacion no se muestra en pantalla
+    // para mostrar formulario o cerrarlo (junto al boton de cerrar)
+    if (formationForm.classList.contains('d-none')) {
+        closeFormationFormButton.classList.remove('d-none')
+        formationForm.classList.remove('d-none')
     } else {
-        showErrorBox('Faltan datos por rellenar')
-
+        closeFormationFormButton.classList.add('d-none')
+        formationForm.classList.add('d-none')
     }
+}
+
+// Boton para cerrar formulario de creacion de formacion
+// TODO: no cagarme encima haciendo esto
+closeFormationFormButton.onclick = () => {
+    if (formationForm.classList.contains('d-none')) {
+        openFormationFormButton.classList.remove('d-none')
+        formationForm.classList.remove('d-none')
+    } else {
+        openFormationFormButton.classList.add('d-none')
+        formationForm.classList.add('d-none')
+    }
+}
+
+// Get month and year only from timestamp (no remover dias pa no complicarme la existencia)
+formationFinishDateForm.onchange = () => {
+    const date = new Date(formationFinishDateForm.value)
+    console.log(date.getTime());
+}
+
+formationNotEndedCheckbox.onclick = () => {
+    formationFinishDateForm.disabled = formationNotEndedCheckbox.checked
+}
+
+// Boton para crear una nueva formacion y añadir a un carrusel si esta correcto
+createNewFormationFormButton.onclick = () => {
+
+}
+
+
+// ------------------------------ Form check ------------------------------
+const aboutMeElement = document.getElementById('about-me')
+
+const isEmptyValue = value => [null, undefined, ''].includes(value)
+
+form.onsubmit = (evt) => {
+    let emptyValues = []
+
+    // Pagina 1 (Datos personales)
+    if (isEmptyValue(nameElement.value)) emptyValues.push('Nombre')
+    if (isEmptyValue(surnameElement.value)) emptyValues.push('Apellidos')
+    if (isEmptyValue(jobElement.value)) emptyValues.push('Puesto de trabajo que buscas')
+
+    if (isEmptyValue(aboutMeElement.value)) emptyValues.push('Información sobre mí')
+
+    // Si hay campos sin rellenar, los muestra por pantalla
+    if (emptyValues.length !== 0) {
+        evt.preventDefault()
+
+        const list = document.createElement('ul')
+        list.classList.add('w-auto', 'd-inline-block', 'align-items-center', 'text-start')
+        let errorString = 'Faltan datos por rellenar:<br><br>'
+
+        emptyValues.forEach(value => {
+            const li = document.createElement('li');
+            li.innerText = value;
+            list.appendChild(li);
+        })
+        errorString += list.outerHTML
+
+        showErrorBox(errorString, emptyValues)
+    } else {
+        hideErrorBox()
+    }
+
+
+
     removeCache()
 }

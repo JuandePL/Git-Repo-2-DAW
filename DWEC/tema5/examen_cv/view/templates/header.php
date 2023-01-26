@@ -10,14 +10,13 @@ require_once __DIR__ . '/../../controller/SessionController.php';
 // });
 ?>
 
-<header class="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+<header class="container d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
     <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
         <img src="/favicon.ico" alt="CV Logo">
     </a>
 
-    <div class="col-md-3 text-end w-auto">
+    <div class="col-md-3 text-end">
         <?php
-        // TODO: Check user login
         if (!$userObject) { ?>
             <a href="<?php echo '/view/login.php' ?>"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
             <a href="<?php echo '/view/register.php' ?>"><button type="button" class="btn btn-primary">Sign-up</button></a>
