@@ -123,19 +123,24 @@ const closeFormationFormButton = document.getElementById('close-formation-form')
 const createNewFormationFormButton = document.getElementById('create-new-formation')
 
 const formationForm = document.getElementById('formation-form')
-const formationStartDateForm = document.getElementById('form-formation-date-start')
-const formationFinishDateForm = document.getElementById('form-formation-date-finish')
+const formationDateStartForm = document.getElementById('form-formation-date-start')
+const formationDateFinishForm = document.getElementById('form-formation-date-finish')
 const formationNotEndedCheckbox = document.getElementById('form-formation-date-finish-present')
+
+const formationTableBody = document.getElementById('formation-table-body')
+
+const showFormationForm = () => formationForm.classList.remove('d-none')
+const hideFormationForm = () => formationForm.classList.add('d-none')
 
 let formation = {
     formationList: [],
 
-    get getList() { return this.formationList; },
+    get list() { return this.formationList; },
     set add(formation) {
         this.formationList.push(formation)
 
         if (this.formationList.length >= 1) {
-            console.log('idk');
+            openFormationFormButton.classList.remove('d-none')
         }
     }
 }
@@ -167,18 +172,53 @@ closeFormationFormButton.onclick = () => {
 }
 
 // Get month and year only from timestamp (no remover dias pa no complicarme la existencia)
-formationFinishDateForm.onchange = () => {
-    const date = new Date(formationFinishDateForm.value)
+formationDateFinishForm.onchange = () => {
+    const date = new Date(formationDateFinishForm.value)
     console.log(date.getTime());
 }
 
 formationNotEndedCheckbox.onclick = () => {
-    formationFinishDateForm.disabled = formationNotEndedCheckbox.checked
+    formationDateFinishForm.disabled = formationNotEndedCheckbox.checked
 }
 
 // Boton para crear una nueva formacion y añadir a un carrusel si esta correcto
 createNewFormationFormButton.onclick = () => {
+    const academicCenterValue = document.getElementById('form-academic-center').value
+    const academicTitleValue = document.getElementById('form-academic-title').value
+    const dateStartTimestamp = new Date(formationDateStartForm.value).getTime()
+    let dateFinishTimestamp = new Date(formationDateFinishForm.value).getTime()
 
+    // Comprobar que la fecha de inicio no sea mayor que la de finalizacion (si ha terminado la formacion)
+    if (dateStartTimestamp >= dateFinishTimestamp && !formationNotEndedCheckbox.checked) {
+        showErrorBox('No puedes tener una fecha de finalización menor que la de inicio')
+        return
+    }
+
+    let emptyValues = []
+
+    if (isEmptyValue(academicCenterValue)) emptyValues.push('Centro académico')
+    if (isEmptyValue(academicTitleValue)) emptyValues.push('Título de formación')
+    if (isEmptyValue(dateStartTimestamp)) emptyValues.push('Fecha de inicio')
+
+    // Si no ha terminado la formación, poned timestamp a -1 para guardar en BD
+    if (formationNotEndedCheckbox.checked) {
+        dateFinishTimestamp = -1
+    } else if (isEmptyValue(dateFinishTimestamp)) emptyValues.push('Fecha de finalización')
+
+    // Si hay errores, mostrarlos por pantalla
+    if (emptyValues.length !== 0) {
+        showEmptyValuesListHTML(emptyValues)
+        return
+    }
+
+    formation.add = {
+        "academicCenter": academicCenterValue,
+        "academicTitle": academicTitleValue,
+        "dateStart": dateStartTimestamp,
+        "dateFinish": dateFinishTimestamp,
+    }
+
+    hideErrorBox()
 }
 
 
@@ -186,6 +226,21 @@ createNewFormationFormButton.onclick = () => {
 const aboutMeElement = document.getElementById('about-me')
 
 const isEmptyValue = value => [null, undefined, ''].includes(value)
+
+function showEmptyValuesListHTML(emptyValues) {
+    const list = document.createElement('ul')
+    list.classList.add('w-auto', 'd-inline-block', 'align-items-center', 'text-start')
+    let errorString = 'Faltan datos por rellenar:<br><br>'
+
+    emptyValues.forEach(value => {
+        const li = document.createElement('li');
+        li.innerText = value;
+        list.appendChild(li);
+    })
+    errorString += list.outerHTML
+
+    showErrorBox(errorString, emptyValues)
+}
 
 form.onsubmit = (evt) => {
     let emptyValues = []
@@ -200,19 +255,7 @@ form.onsubmit = (evt) => {
     // Si hay campos sin rellenar, los muestra por pantalla
     if (emptyValues.length !== 0) {
         evt.preventDefault()
-
-        const list = document.createElement('ul')
-        list.classList.add('w-auto', 'd-inline-block', 'align-items-center', 'text-start')
-        let errorString = 'Faltan datos por rellenar:<br><br>'
-
-        emptyValues.forEach(value => {
-            const li = document.createElement('li');
-            li.innerText = value;
-            list.appendChild(li);
-        })
-        errorString += list.outerHTML
-
-        showErrorBox(errorString, emptyValues)
+        showEmptyValuesListHTML(emptyValues)
     } else {
         hideErrorBox()
     }
