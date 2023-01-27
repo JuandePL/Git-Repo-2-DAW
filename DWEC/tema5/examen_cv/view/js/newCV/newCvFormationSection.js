@@ -1,42 +1,3 @@
-// ------------------------------ Pagina 3 Check ------------------------------
-const openFormationFormButton = document.getElementById('open-formation-form')
-const closeFormationFormButton = document.getElementById('close-formation-form')
-const createNewFormationFormButton = document.getElementById('create-new-formation')
-
-const formationForm = document.getElementById('formation-form')
-const formationDateStartForm = document.getElementById('form-formation-date-start')
-const formationDateFinishForm = document.getElementById('form-formation-date-finish')
-const formationNotEndedCheckbox = document.getElementById('form-formation-date-finish-present')
-
-const formationTableDiv = document.getElementById('formation-table-div')
-const formationTableBody = document.getElementById('formation-table-body')
-
-// Objeto formation que guarda la lista de formaciones
-// y hace acciones cada vez que el usuario añade un valor 
-let formation = {
-    formationList: [],
-
-    get list() { return this.formationList; },
-    set add(formation) {
-        this.formationList.push(formation)
-
-        if (this.formationList.length >= 1) {
-            openFormationFormButton.classList.remove('d-none')
-            console.log('formationlist >1');
-        } else {
-            openFormationFormButton.classList.add('d-none')
-            console.log('formationlist <1');
-        }
-    },
-    delete(index) {
-        this.formationList.splice(index, 1)
-        updateFormationTable()
-    }
-}
-
-// Hacer que la fecha de inicio no sea mayor a la de hoy
-formationDateStartForm.max = new Date().toLocaleDateString()
-
 function openFormationForm() {
     formationForm.classList.remove('d-none')
     closeFormationFormButton.classList.remove('d-none')
@@ -50,22 +11,28 @@ function closeFormationForm() {
     openFormationFormButton.classList.remove('d-none')
 }
 
+function clearFormationForm() {
+    formationAcademicCenter.value = ""
+    formationAcademicTitle.value = ""
+    formationDateFinishForm.value = ""
+    formationDateStartForm.value = ""
+}
+
 // Boton para abrir formulario de creacion de formacion
 openFormationFormButton.onclick = openFormationForm
 
 // Boton para cerrar formulario de creacion de formacion
 closeFormationFormButton.onclick = closeFormationForm
 
+// Checkbox para habilitar y deshabilitar fecha de finalizacion en formulario
 formationNotEndedCheckbox.onclick = () => {
     formationDateFinishForm.disabled = formationNotEndedCheckbox.checked
 }
 
-const isEmptyValue = value => [null, undefined, ''].includes(value)
-
 // Boton para crear una nueva formacion y añadir a un carrusel si esta correcto
 createNewFormationFormButton.onclick = () => {
-    const academicCenterValue = document.getElementById('form-academic-center').value
-    const academicTitleValue = document.getElementById('form-academic-title').value
+    const academicCenterValue = formationAcademicCenter.value
+    const academicTitleValue = formationAcademicTitle.value
     const dateStartTimestamp = new Date(formationDateStartForm.value).getTime()
     let dateFinishTimestamp = new Date(formationDateFinishForm.value).getTime()
 
@@ -76,15 +43,24 @@ createNewFormationFormButton.onclick = () => {
     }
 
     let emptyValues = []
-
     if (isEmptyValue(academicCenterValue)) emptyValues.push('Centro académico')
     if (isEmptyValue(academicTitleValue)) emptyValues.push('Título de formación')
-    if (isEmptyValue(formationDateStartForm.value)) emptyValues.push('Fecha de inicio')
 
+    // Comprobar fecha de inicio
+    if (dateStartTimestamp > new Date().getTime()) {
+        showErrorBox('No puedes tener una fecha de inicio mayor a hoy')
+        return
+    } else if (isEmptyValue(formationDateStartForm.value)) {
+        emptyValues.push('Fecha de inicio')
+    }
+
+    // Comprobar fecha de finalizacion
     // Si no ha terminado la formación, poned timestamp a -1 para guardar en BD
     if (formationNotEndedCheckbox.checked) {
         dateFinishTimestamp = -1
-    } else if (isEmptyValue(formationDateFinishForm.value)) emptyValues.push('Fecha de finalización')
+    } else if (isEmptyValue(formationDateFinishForm.value)) {
+        emptyValues.push('Fecha de finalización')
+    }
 
     // Si hay errores, mostrarlos por pantalla
     if (emptyValues.length !== 0) {
@@ -92,6 +68,7 @@ createNewFormationFormButton.onclick = () => {
         return
     }
 
+    // Añadir formacion a la lista
     formation.add = {
         "academicCenter": academicCenterValue,
         "academicTitle": academicTitleValue,
@@ -99,6 +76,7 @@ createNewFormationFormButton.onclick = () => {
         "dateFinish": dateFinishTimestamp,
     }
 
+    clearFormationForm()
     hideErrorBox()
     closeFormationForm()
     updateFormationTable()
@@ -111,6 +89,7 @@ function updateFormationTable() {
     formationTableBody.innerHTML = ""
 
     // Comprobar si la lista tiene valores
+    // Sino tiene ocultar tabla
     if (formation.list.length === 0) {
         formationTableDiv.classList.add('d-none')
         openFormationForm()

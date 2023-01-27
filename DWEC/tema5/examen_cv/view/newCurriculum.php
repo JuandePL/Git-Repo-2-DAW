@@ -70,8 +70,8 @@
                     </div>
 
                     <div id="page-3">
-                        <h1 class="h3 mb-3 fw-normal text-center">Formación académica</h1>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                        <h1 class="h3 fw-normal text-center">Formación académica</h1>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
                             <button id="close-formation-form" type="button" class="btn btn-danger w-100 d-flex align-items-center d-none text-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle me-1" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -87,7 +87,7 @@
                         </div>
                         <div id="formation-form">
                             <div class="mb-3">
-                                <label for="form-academic-center" class="form-label">Centro académico</label>
+                                <label for="form-academic-center" class="form-label mt-3">Centro académico</label>
                                 <input type="text" class="form-control" id="form-academic-center">
                             </div>
                             <div class="mb-3">
@@ -96,7 +96,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="form-formation-date-start" class="form-label">Fecha de inicio (elige mes y año)</label>
-                                <input id="form-formation-date-start" class="form-control" type="date" />
+                                <input id="form-formation-date-start" class="form-control" type="date" max="<?php echo date('Y-m-d') ?>" />
                             </div>
 
                             <label for="form-formation-date-finish" class="form-label">Fecha de finalización (elige mes y año)</label>
@@ -141,7 +141,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="formationStartDate" class="form-label">Fecha de inicio (elige mes y año)</label>
-                                <input id="formationStartDate" class="form-control" type="date" />
+                                <input id="formationStartDate" class="form-control" type="date" max="<?php echo date('Y-m-d') ?>" />
                             </div>
 
                             <label for="formationfinishDate" class="form-label">Fecha de finalización (elige mes y año)</label>
@@ -177,8 +177,9 @@
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
-    <script src="/view/js/newCurriculum.js"></script>
-    <script src="/view/js/newCVFormationSection.js"></script>
+    <script src="/view/js/newCV/newCvVariables.js"></script>
+    <script src="/view/js/newCV/newCurriculum.js"></script>
+    <script src="/view/js/newCV/newCvFormationSection.js"></script>
 
 </body>
 

@@ -120,8 +120,6 @@ useWorkerNamesCheckbox.onclick = () => {
 // ------------------------------ Form check ------------------------------
 const aboutMeElement = document.getElementById('about-me')
 
-const isEmptyValue = value => [null, undefined, ''].includes(value)
-
 function showEmptyValuesListHTML(emptyValues) {
     const list = document.createElement('ul')
     list.classList.add('w-auto', 'd-inline-block', 'align-items-center', 'text-start')
