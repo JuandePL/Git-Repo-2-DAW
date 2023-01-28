@@ -130,29 +130,64 @@
 
                     <div id="page-4">
                         <h1 class="h3 mb-3 fw-normal text-center">Experiencia</h1>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                            <button id="close-experience-form" type="button" class="btn btn-danger w-100 d-flex align-items-center d-none text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle me-1" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                                </svg>Cerrar formulario
+                            </button>
+                            <button id="open-experience-form" type="button" class="btn btn-primary w-100 d-flex align-items-center d-none text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle me-1" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>Nueva experiencia
+                            </button>
+                        </div>
                         <div id="experience-form">
                             <div class="mb-3">
-                                <label for="form-company-name" class="form-label">Nombre de la empresa</label>
-                                <input type="text" class="form-control" id="form-company-name">
+                                <label for="form-experience-company" class="form-label mt-3">Nombre de la empresa</label>
+                                <input type="text" class="form-control" id="form-experience-company">
                             </div>
                             <div class="mb-3">
-                                <label for="form-worker-role" class="form-label">Cargo ocupado</label>
-                                <input type="text" class="form-control" id="form-worker-role">
+                                <label for="form-experience-role" class="form-label">Cargo ocupado</label>
+                                <input type="text" class="form-control" id="form-experience-role">
                             </div>
                             <div class="mb-3">
-                                <label for="formationStartDate" class="form-label">Fecha de inicio (elige mes y año)</label>
-                                <input id="formationStartDate" class="form-control" type="date" max="<?php echo date('Y-m-d') ?>" />
+                                <label for="form-experience-tasks" class="form-label">Algunas tareas realizadas:</label>
+                                <textarea rows="2" class="form-control" id="form-experience-tasks"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="form-experience-date-start" class="form-label">Fecha de inicio (elige mes y año)</label>
+                                <input id="form-experience-date-start" class="form-control" type="date" max="<?php echo date('Y-m-d') ?>" />
                             </div>
 
-                            <label for="formationfinishDate" class="form-label">Fecha de finalización (elige mes y año)</label>
-                            <input id="formationFinishDate" class="form-control" type="date" />
+                            <label for="form-experience-date-finish" class="form-label">Fecha de finalización (elige mes y año)</label>
+                            <input id="form-experience-date-finish" class="form-control" type="date" />
                             <div class="form-check mt-3 mb-3">
-                                <input class="form-check-input" type="checkbox" id="formationFinishDatePresent">
-                                <label class="form-check-label" for="formationFinishDatePresent">Formación sin finalizar</label>
+                                <input class="form-check-input" type="checkbox" id="form-experience-date-finish-present">
+                                <label class="form-check-label" for="form-experience-date-finish-present">Trabajo vigente</label>
                             </div>
 
-                            <button type="button" id="add-formation" class="w-100 btn btn-lg btn-primary">Añadir formación</button>
-
+                            <button type="button" id="create-new-experience" class="w-100 btn btn-lg btn-primary mb-3">Añadir experiencia</button>
+                        </div>
+                        <div id="experience-table-div" class="form-control mt-3 d-none">
+                            <h5 class="text-center w-100 pt-3 mb-3">Lista de experiencia</h5>
+                            <table id="experience-table" class="table table-stripped table-hover pb-3">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre de la empresa</th>
+                                        <th>Cargo ocupado</th>
+                                        <th>Algunas tareas realizadas</th>
+                                        <th>Fecha de inicio</th>
+                                        <th>Fecha de finalización</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="experience-table-body" class="table-group-divider">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -180,6 +215,7 @@
     <script src="/view/js/newCV/newCvVariables.js"></script>
     <script src="/view/js/newCV/newCurriculum.js"></script>
     <script src="/view/js/newCV/newCvFormationSection.js"></script>
+    <script src="/view/js/newCV/newCvExperienceSection.js"></script>
 
 </body>
 

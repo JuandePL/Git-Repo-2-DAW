@@ -2,7 +2,6 @@ function openFormationForm() {
     formationForm.classList.remove('d-none')
     closeFormationFormButton.classList.remove('d-none')
     openFormationFormButton.classList.add('d-none')
-    console.log('ABRETE COJONES');
 }
 
 function closeFormationForm() {

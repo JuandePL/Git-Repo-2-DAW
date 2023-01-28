@@ -29,15 +29,52 @@ let formation = {
         // Mostrar botones de abrir y cerrar formulario si hay mas de 1 elemento en la lista
         if (this.formationList.length >= 1) {
             openFormationFormButton.classList.remove('d-none')
-            console.log('formationlist >1');
         } else {
             openFormationFormButton.classList.add('d-none')
             closeFormationFormButton.classList.add('d-none')
-            console.log('formationlist <1');
         }
     },
     delete(index) {
         this.formationList.splice(index, 1)
         updateFormationTable()
+    }
+}
+
+// -------------------- Pagina 3 Variables - Formación académica --------------------
+const openExperienceFormButton = document.getElementById('open-experience-form')
+const closeExperienceFormButton = document.getElementById('close-experience-form')
+const createNewExperienceFormButton = document.getElementById('create-new-experience')
+
+const experienceForm = document.getElementById('experience-form')
+const experienceCompany = document.getElementById('form-experience-company')
+const experienceRole = document.getElementById('form-experience-role')
+const experienceTasks = document.getElementById('form-experience-tasks')
+let experienceDateStartForm = document.getElementById('form-experience-date-start')
+let experienceDateFinishForm = document.getElementById('form-experience-date-finish')
+const experienceNotEndedCheckbox = document.getElementById('form-experience-date-finish-present')
+
+const experienceTableDiv = document.getElementById('experience-table-div')
+const experienceTableBody = document.getElementById('experience-table-body')
+
+// Objeto experience que guarda la lista de formaciones
+// y hace acciones cada vez que el usuario añade un valor 
+let experience = {
+    experienceList: [],
+
+    get list() { return this.experienceList; },
+    set add(experience) {
+        this.experienceList.push(experience)
+
+        // Mostrar botones de abrir y cerrar formulario si hay mas de 1 elemento en la lista
+        if (this.experienceList.length >= 1) {
+            openExperienceFormButton.classList.remove('d-none')
+        } else {
+            openExperienceFormButton.classList.add('d-none')
+            closeExperienceFormButton.classList.add('d-none')
+        }
+    },
+    delete(index) {
+        this.experienceList.splice(index, 1)
+        updateExperienceTable()
     }
 }

@@ -145,6 +145,9 @@ form.onsubmit = (evt) => {
 
     if (isEmptyValue(aboutMeElement.value)) emptyValues.push('Información sobre mí')
 
+    if (formation.list.length === 0) emptyValues.push('Formación')
+    if (experience.list.length === 0) emptyValues.push('Experiencia')
+
     // Si hay campos sin rellenar, los muestra por pantalla
     if (emptyValues.length !== 0) {
         evt.preventDefault()
