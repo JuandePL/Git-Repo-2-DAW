@@ -1,6 +1,24 @@
 const isEmptyValue = value => [null, undefined, ''].includes(value)
 
+function formHasEmptyValues() {
 
+}
+
+function showErrorBox(errorMessage, errorStack = '') {
+    const errorBox = document.getElementById('errorBox')
+    errorBox.classList.remove('d-none')
+    errorBox.style.display = 'block'
+
+    document.getElementById('error').innerHTML = errorMessage
+    // console.error(errorMessage, errorStack)
+
+    // Cerrar box
+    document.getElementById('close-box').onclick = hideErrorBox
+}
+
+function hideErrorBox() {
+    errorBox.classList.add('d-none')
+}
 
 // -------------------- Pagina 3 Variables - Formación académica --------------------
 const openFormationFormButton = document.getElementById('open-formation-form')
@@ -40,7 +58,7 @@ let formation = {
     }
 }
 
-// -------------------- Pagina 3 Variables - Formación académica --------------------
+// -------------------- Pagina 4 Variables - Experiencia --------------------
 const openExperienceFormButton = document.getElementById('open-experience-form')
 const closeExperienceFormButton = document.getElementById('close-experience-form')
 const createNewExperienceFormButton = document.getElementById('create-new-experience')
@@ -76,5 +94,36 @@ let experience = {
     delete(index) {
         this.experienceList.splice(index, 1)
         updateExperienceTable()
+    }
+}
+
+// -------------------- Pagina 5 Variables - Idiomas --------------------
+const formLanguageName = document.getElementById('form-language-name')
+const formLanguagePercentageNumber = document.getElementById('form-language-percentage-number')
+const formLanguagePercentageRange = document.getElementById('form-language-percentage-range')
+
+const languageTableDiv = document.getElementById('language-table-div')
+const languageTableBody = document.getElementById('language-table-body')
+
+let language = {
+    languageList: [],
+
+    get list() { return this.languageList; },
+    set add(language) {
+        // Recorrer el array para ver si el idioma ya figura en la lista
+        const languageExists = this.languageList.findIndex(v => v.languageName === language.languageName)
+        if (languageExists !== -1) {
+            showErrorBox('No puedes añadir el mismo idioma de nuevo')
+            return
+        }
+
+        // Añadir idioma a la lista
+        this.languageList.push(language)
+        hideErrorBox()
+        updateLanguageTable()
+    },
+    delete(index) {
+        this.languageList.splice(index, 1)
+        updateLanguageTable()
     }
 }

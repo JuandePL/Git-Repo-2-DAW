@@ -6,7 +6,7 @@ const form = document.getElementById('completeForm')
 
 let page = {
     value: 1,
-    lastValue: 4,
+    lastValue: 5,
 
     get currentValue() { return this.value; },
     set currentValue(page) {
@@ -48,22 +48,6 @@ page.init()
 
 previousPageButton.onclick = () => page.currentValue--
 nextPageButton.onclick = () => page.currentValue++
-
-function showErrorBox(errorMessage, errorStack = '') {
-    const errorBox = document.getElementById('errorBox')
-    errorBox.classList.remove('d-none')
-    errorBox.style.display = 'block'
-
-    document.getElementById('error').innerHTML = errorMessage
-    console.error(errorMessage, errorStack)
-
-    // Cerrar box
-    document.getElementById('close-box').onclick = hideErrorBox
-}
-
-function hideErrorBox() {
-    errorBox.classList.add('d-none')
-}
 
 // ------------------------------- Pagina 1 Check ------------------------------
 const nameElement = document.getElementById('worker-name')
@@ -147,6 +131,7 @@ form.onsubmit = (evt) => {
 
     if (formation.list.length === 0) emptyValues.push('Formación')
     if (experience.list.length === 0) emptyValues.push('Experiencia')
+    if (language.list.length === 0) emptyValues.push('Idiomas')
 
     // Si hay campos sin rellenar, los muestra por pantalla
     if (emptyValues.length !== 0) {

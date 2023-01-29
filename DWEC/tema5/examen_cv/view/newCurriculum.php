@@ -190,9 +190,41 @@
                             </table>
                         </div>
                     </div>
+
+                    <div id="page-5">
+                        <h1 class="h3 mb-3 fw-normal text-center">Idiomas</h1>
+
+                        <div class="row row-cols-3 g-3 align-items-center mb-3">
+                            <div class="col-6">
+                                <input type="text" id="form-language-name" class="form-control" placeholder="Idioma">
+                            </div>
+                            <div class="col-2">
+                                <input type="number" class="form-control" id="form-language-percentage-number" max="100" onkeyup="changePercentage(this.value)">
+                            </div>
+                            <div class="col">
+                                <input type="range" class="form-range" id="form-language-percentage-range" onchange="changePercentage(this.value)">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-lg btn-primary w-100" onclick="addLanguage()">Añadir idioma</button>
+
+                        <div id="language-table-div" class="form-control mt-3 d-none">
+                            <h5 class="text-center w-100 mb-3 pt-3">Lista de idiomas</h5>
+                            <table id="language-table" class="table table-stripped table-hover pb-3">
+                                <thead>
+                                    <tr>
+                                        <th>Idioma</th>
+                                        <th>Porcentaje</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="language-table-body" class="table-group-divider">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between pb-3">
                     <a id="previousPage" class="btn btn-lg link-secondary p-0 m-0" role="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
@@ -216,6 +248,7 @@
     <script src="/view/js/newCV/newCurriculum.js"></script>
     <script src="/view/js/newCV/newCvFormationSection.js"></script>
     <script src="/view/js/newCV/newCvExperienceSection.js"></script>
+    <script src="/view/js/newCV/newCvLanguagesSection.js"></script>
 
 </body>
 
