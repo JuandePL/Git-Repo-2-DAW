@@ -26,6 +26,17 @@
     }
     ?>
 
+    <div class="modal fade" tabindex="-1" id="onload">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-body text-center">
+                <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <main class="container">
         <!-- Formulario -->
         <div style="max-width: 800px; margin: auto;">
@@ -252,6 +263,12 @@
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script type="text/javascript">
+        window.onload = () => {
+            const myModal = new bootstrap.Modal('#onload');
+            myModal.show();
+        }
+    </script>
     <script src="/view/js/newCV/newCvVariables.js"></script>
     <script src="/view/js/newCV/newCurriculum.js"></script>
     <script src="/view/js/newCV/newCvFormationSection.js"></script>

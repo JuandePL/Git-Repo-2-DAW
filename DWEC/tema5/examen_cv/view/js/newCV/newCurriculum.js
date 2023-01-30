@@ -154,8 +154,8 @@ form.onsubmit = (evt) => {
         showEmptyValuesListHTML(emptyValues)
     } else {
         evt.preventDefault()
-        // Enviar formulario a PHP
 
+        // Enviar formulario a PHP
         const curriculumJson = {
             "personalData": {
                 "name": nameElement.value,
@@ -169,13 +169,20 @@ form.onsubmit = (evt) => {
             language: language.list,
         }
 
-        // TODO: Terminar esto
+        // Peticion ajax a server para subir CV a base de datos
         $.ajax({
             type: "POST",
             url: '/controller/CVController.php?&isNew=true',
-            data: curriculumJson,
-            success: html => {
-                console.log(html);
+            data: {
+                "description": jobElement.value,
+                "curriculumJson": curriculumJson
+            },
+            success: isCreatedSuccesfully => {
+                if (isCreatedSuccesfully === 'true') {
+                    
+                } else {
+                    showErrorBox('Ocurrió un error intentando crear el CV.')
+                }
             }
         })
 

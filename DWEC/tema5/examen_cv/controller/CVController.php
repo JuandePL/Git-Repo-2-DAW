@@ -1,16 +1,23 @@
 <?php
 require_once 'SessionController.php';
 
-$isNew = isset($_POST['isNew']) ? (bool) $_POST['isNew'] : false;
+$isNew = isset($_GET['isNew']) ? $_GET['isNew'] : false;
 $getWorkerData = isset($_GET['getWorkerData']) ? $_GET['getWorkerData'] : false;
 
-// TODO: Terminar esto
-if ($isNew == "true") {
-    echo "isnew $isnew";
-    print_r($_POST);
-    return print_r($_POST);
-} else {
-    return print_r($_GET) . "\n\n" .  print_r($_POST);
+if ($isNew) {
+    $description = $_POST['description'];
+    $curriculumJson = json_encode($_POST['curriculumJson'], JSON_UNESCAPED_UNICODE);
+
+    try {
+        $query = DB::prepare(
+            "INSERT INTO cvs (user_id, description, json_data) VALUES (?, ?, ?)",
+            array(getUserFromSession()->id, $description, $curriculumJson)
+        );
+        echo "true";
+    } catch (Throwable $th) {
+        //throw $th;
+        echo "false";
+    }
 }
 
 if ($getWorkerData) {
