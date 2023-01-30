@@ -25,7 +25,7 @@
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <?php if ($userObject) { ?>
-                            <a href="#"><button type="button" class="btn btn-outline-primary btn-lg px-4">Mis CV</button></a>
+                            <a href="/view/myCurriculums.php"><button type="button" class="btn btn-outline-primary btn-lg px-4">Mis CV</button></a>
                             <a href="/view/newCurriculum.php"><button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Nuevo CV</button></a>
                         <?php } else { ?>
                             <a href="view/login.php"><button type="button" class="btn btn-outline-primary btn-lg px-4">Iniciar sesión</button></a>

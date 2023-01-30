@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Curriculum</title>
+    <title>Nuevo CV - Curriculum</title>
     <link rel="stylesheet" href="/view/css/userForm.css">
     <style>
         #pages>div {
-            height: 80vh;
+            height: 75vh;
             padding: 0 1em;
             max-height: 100vh;
             overflow: auto;
@@ -25,17 +25,6 @@
         header("Location:../");
     }
     ?>
-
-    <div class="modal fade" tabindex="-1" id="onload">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-body text-center">
-                <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <main class="container">
         <!-- Formulario -->
@@ -68,6 +57,10 @@
                         <div class="form-floating">
                             <input type="email" class="form-control" name="worker-email" id="worker-email">
                             <label>Correo electrónico</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="worker-location" id="worker-location">
+                            <label>Localidad</label>
                         </div>
                         <div class="form-floating">
                             <input type="text" class="form-control" name="worker-phone" id="worker-phone">
@@ -262,13 +255,9 @@
         </div>
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
-    <script type="text/javascript">
-        window.onload = () => {
-            const myModal = new bootstrap.Modal('#onload');
-            myModal.show();
-        }
-    </script>
+    <?php include "templates/footer.php" ?>
+
+    <script src="/view/js/script.js"></script>
     <script src="/view/js/newCV/newCvVariables.js"></script>
     <script src="/view/js/newCV/newCurriculum.js"></script>
     <script src="/view/js/newCV/newCvFormationSection.js"></script>

@@ -52,6 +52,7 @@ nextPageButton.onclick = () => page.currentValue++
 // ------------------------------- Pagina 1 Check ------------------------------
 const nameElement = document.getElementById('worker-name')
 const surnameElement = document.getElementById('worker-surname')
+const locationElement = document.getElementById('worker-location')
 const emailElement = document.getElementById('worker-email')
 const phoneElement = document.getElementById('worker-phone')
 const jobElement = document.getElementById('job-to-look-for')
@@ -133,6 +134,7 @@ form.onsubmit = (evt) => {
     // Pagina 1 (Datos personales)
     if (isEmptyValue(nameElement.value)) emptyValues.push('Nombre')
     if (isEmptyValue(surnameElement.value)) emptyValues.push('Apellidos')
+    if (isEmptyValue(locationElement.value)) emptyValues.push('Localidad')
     if (isEmptyValue(emailElement.value) || !emailElement.value.match(emailRegex)) {
         emptyValues.push('Correo electrónico')
     }
@@ -161,8 +163,10 @@ form.onsubmit = (evt) => {
                 "name": nameElement.value,
                 "surname": surnameElement.value,
                 "email": emailElement.value,
+                "location": locationElement.value,
                 "phone": phoneElement.value,
                 "jobToLookFor": jobElement.value,
+                "aboutMe": aboutMeElement.value
             },
             formation: formation.list,
             experience: experience.list,
@@ -179,15 +183,13 @@ form.onsubmit = (evt) => {
             },
             success: isCreatedSuccesfully => {
                 if (isCreatedSuccesfully === 'true') {
-                    
+                    hideErrorBox()
+                    removeCache()
+                    window.location.href = "/view/myCurriculums.php?success=El CV fue creado correctamente"
                 } else {
                     showErrorBox('Ocurrió un error intentando crear el CV.')
                 }
             }
         })
-
-        hideErrorBox()
-        removeCache()
     }
-
 }

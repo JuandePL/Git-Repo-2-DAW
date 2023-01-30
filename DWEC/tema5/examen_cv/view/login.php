@@ -54,9 +54,8 @@
         </div>
     </main>
 
-    <p id="result"></p>
+    <?php include "templates/footer.php" ?>
 
-    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
     <script>
         // Filtrar valores formulario (comprobar si es correo o usuario)
         // y pasar valores filtrados al SessionController

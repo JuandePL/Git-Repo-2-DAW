@@ -1,15 +1,18 @@
+// Ocultar formulario de experiencia y boton de cerrar formulario, enseñar boton de abrir formulario
 function openFormationForm() {
     formationForm.classList.remove('d-none')
     closeFormationFormButton.classList.remove('d-none')
     openFormationFormButton.classList.add('d-none')
 }
 
+// Enseñar formulario de experiencia y boton de cerrar formulario, ocultar boton de abrir formulario
 function closeFormationForm() {
     formationForm.classList.add('d-none')
     closeFormationFormButton.classList.add('d-none')
     openFormationFormButton.classList.remove('d-none')
 }
 
+// Borrar valores del formulario
 function clearFormationForm() {
     formationAcademicCenter.value = ""
     formationAcademicTitle.value = ""
@@ -95,13 +98,6 @@ function updateFormationTable() {
         return
     } else {
         formationTableDiv.classList.remove('d-none')
-    }
-
-    // Mostrar fecha como dd/mm/yyyy (ej: 27/01/2022)
-    const dateOptions = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
     }
 
     // Recorrer lista y meter filas dentro del tbody

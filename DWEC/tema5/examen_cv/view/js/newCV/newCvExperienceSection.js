@@ -1,15 +1,18 @@
+// Ocultar formulario de experiencia y boton de cerrar formulario, enseñar boton de abrir formulario
 function openExperienceForm() {
     experienceForm.classList.remove('d-none')
     closeExperienceFormButton.classList.remove('d-none')
     openExperienceFormButton.classList.add('d-none')
 }
 
+// Enseñar formulario de experiencia y boton de cerrar formulario, ocultar boton de abrir formulario
 function closeExperienceForm() {
     experienceForm.classList.add('d-none')
     closeExperienceFormButton.classList.add('d-none')
     openExperienceFormButton.classList.remove('d-none')
 }
 
+// Borrar valores del formulario
 function clearExperienceForm() {
     experienceCompany.value = ""
     experienceRole.value = ""
@@ -98,13 +101,6 @@ function updateExperienceTable() {
         return
     } else {
         experienceTableDiv.classList.remove('d-none')
-    }
-
-    // Mostrar fecha como dd/mm/yyyy (ej: 27/01/2022)
-    const dateOptions = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
     }
 
     // Recorrer lista y meter filas dentro del tbody
