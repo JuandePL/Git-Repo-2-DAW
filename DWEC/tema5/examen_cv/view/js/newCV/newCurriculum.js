@@ -52,6 +52,8 @@ nextPageButton.onclick = () => page.currentValue++
 // ------------------------------- Pagina 1 Check ------------------------------
 const nameElement = document.getElementById('worker-name')
 const surnameElement = document.getElementById('worker-surname')
+const emailElement = document.getElementById('worker-email')
+const phoneElement = document.getElementById('worker-phone')
 const jobElement = document.getElementById('job-to-look-for')
 const useWorkerNamesCheckbox = document.getElementById('useWorkerNames')
 
@@ -69,6 +71,7 @@ useWorkerNamesCheckbox.onclick = () => {
     const sessionData = sessionStorage.getItem('name') && sessionStorage.getItem('surname')
     nameElement.disabled = useWorkerNamesCheckbox.checked
     surnameElement.disabled = useWorkerNamesCheckbox.checked
+    emailElement.disabled = useWorkerNamesCheckbox.checked
 
     // Si los datos no estan guardados en cache, los obtiene
     if (useWorkerNamesCheckbox.checked && !sessionData) {
@@ -80,9 +83,11 @@ useWorkerNamesCheckbox.onclick = () => {
                 // Guardar items en cache
                 sessionStorage.setItem('name', json.name)
                 sessionStorage.setItem('surname', json.surname)
+                sessionStorage.setItem('email', json.email)
 
                 nameElement.value = json.name
                 surnameElement.value = json.surname
+                emailElement.value = json.email
             },
             error: (error) => {
                 showErrorBox('Ocurrio un error inesperado al intentar obtener los datos del usuario', error)
@@ -92,9 +97,11 @@ useWorkerNamesCheckbox.onclick = () => {
         // Nombre en cache
         nameElement.value = sessionStorage.getItem('name')
         surnameElement.value = sessionStorage.getItem('surname')
+        emailElement.value = sessionStorage.getItem('email')
     } else {
         nameElement.value = ''
         surnameElement.value = ''
+        emailElement.value = ''
         hideErrorBox()
     }
 }
@@ -120,13 +127,21 @@ function showEmptyValuesListHTML(emptyValues) {
 }
 
 form.onsubmit = (evt) => {
+    const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     let emptyValues = []
 
     // Pagina 1 (Datos personales)
     if (isEmptyValue(nameElement.value)) emptyValues.push('Nombre')
     if (isEmptyValue(surnameElement.value)) emptyValues.push('Apellidos')
+    if (isEmptyValue(emailElement.value) || !emailElement.value.match(emailRegex)) {
+        emptyValues.push('Correo electrónico')
+    }
+    if (isEmptyValue(phoneElement.value) || !phoneElement.value.match(/(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/)) {
+        emptyValues.push('Teléfono')
+    }
     if (isEmptyValue(jobElement.value)) emptyValues.push('Puesto de trabajo que buscas')
 
+    // Página 2 (Sobre tí)
     if (isEmptyValue(aboutMeElement.value)) emptyValues.push('Información sobre mí')
 
     if (formation.list.length === 0) emptyValues.push('Formación')
@@ -138,10 +153,34 @@ form.onsubmit = (evt) => {
         evt.preventDefault()
         showEmptyValuesListHTML(emptyValues)
     } else {
+        evt.preventDefault()
+        // Enviar formulario a PHP
+
+        const curriculumJson = {
+            "personalData": {
+                "name": nameElement.value,
+                "surname": surnameElement.value,
+                "email": emailElement.value,
+                "phone": phoneElement.value,
+                "jobToLookFor": jobElement.value,
+            },
+            formation: formation.list,
+            experience: experience.list,
+            language: language.list,
+        }
+
+        // TODO: Terminar esto
+        $.ajax({
+            type: "POST",
+            url: '/controller/CVController.php?&isNew=true',
+            data: curriculumJson,
+            success: html => {
+                console.log(html);
+            }
+        })
+
         hideErrorBox()
+        removeCache()
     }
 
-
-
-    removeCache()
 }

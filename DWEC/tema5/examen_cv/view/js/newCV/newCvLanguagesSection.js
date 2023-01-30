@@ -1,3 +1,8 @@
+function clearLanguageForm() {
+    formLanguageName.value = ""
+    changePercentage(null)
+}
+
 function changePercentage(value) {
     formLanguagePercentageNumber.value = value
     formLanguagePercentageRange.value = value ?? 50
@@ -36,17 +41,9 @@ function updateLanguageTable() {
     // Sino tiene ocultar tabla
     if (language.list.length === 0) {
         languageTableDiv.classList.add('d-none')
-        openLanguageForm()
         return
     } else {
         languageTableDiv.classList.remove('d-none')
-    }
-
-    // Mostrar fecha como dd/mm/yyyy (ej: 27/01/2022)
-    const dateOptions = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
     }
 
     // Recorrer lista y meter filas dentro del tbody

@@ -41,7 +41,7 @@
             </div>
 
             <!-- Formulario -->
-            <form id="completeForm" action="/controller/CVController.php?isNew=true" method="post">
+            <form id="completeForm">
                 <div id="pages">
                     <div id="page-1">
                         <h1 class="h3 mb-3 fw-normal text-center">Datos personales</h1>
@@ -53,6 +53,14 @@
                         <div class="form-floating">
                             <input type="text" class="form-control" name="worker-surname" id="worker-surname">
                             <label>Apellidos</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="email" class="form-control" name="worker-email" id="worker-email">
+                            <label>Correo electrónico</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="worker-phone" id="worker-phone">
+                            <label>Teléfono</label>
                         </div>
                         <div class="form-floating">
                             <input type="text" class="form-control" name="job-to-look-for" id="job-to-look-for">

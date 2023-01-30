@@ -1,9 +1,5 @@
 const isEmptyValue = value => [null, undefined, ''].includes(value)
 
-function formHasEmptyValues() {
-
-}
-
 function showErrorBox(errorMessage, errorStack = '') {
     const errorBox = document.getElementById('errorBox')
     errorBox.classList.remove('d-none')
@@ -121,6 +117,7 @@ let language = {
         this.languageList.push(language)
         hideErrorBox()
         updateLanguageTable()
+        clearLanguageForm()
     },
     delete(index) {
         this.languageList.splice(index, 1)
