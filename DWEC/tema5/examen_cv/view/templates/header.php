@@ -9,7 +9,7 @@
         <img src="/favicon.ico" alt="CV Logo">
     </a>
 
-    <div class="col-md-3 text-end">
+    <div class="col-md-3 text-end w-auto">
         <?php
         if (!$userObject) { ?>
             <a href="<?php echo '/view/login.php' ?>"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>

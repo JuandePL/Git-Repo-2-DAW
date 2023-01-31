@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 28</title>
+    <style>
+        .transition {
+            height: 300px;
+            width: 300px;
+            background-color: purple;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .transition:hover {
+            width: 500px;
+            background-color: red;
+        }
+
+        @keyframes animation {
+            0% {
+                width: 300px;
+                background-color: purple;
+            }
+
+            50% {
+                width: 500px;
+                background-color: red;
+            }
+
+            100% {
+                width: 300px;
+                background-color: purple;
+            }
+        }
+
+        .animation {
+            height: 300px;
+            width: 300px;
+            animation-name: animation;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Actividad 28</h1>
+    <h3>Diseña los códigos HTML y CSS necesarios para implementar dos animaciones, debes usar la propiedad "animation"
+        estudiada en clase y la propiedad "transition". <br>
+        A modo de ayuda puedes ver estos 2 vídeos
+        <a href="https://youtu.be/8Jh2K3tq5n0" target="_blank">para animation</a>
+        y <a href="https://youtu.be/pdPtKBWoI9E" target="_blank">para transition</a>
+        <hr>
+
+        <h3>Animation</h3>
+        <div class="animation"></div>
+
+        <h3>Transition</h3>
+        <div class="transition"></div>
+    </h3>
+</body>
+
+</html>

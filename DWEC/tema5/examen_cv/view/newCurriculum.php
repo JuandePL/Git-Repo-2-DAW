@@ -255,8 +255,6 @@
         </div>
     </main>
 
-    <?php include "templates/footer.php" ?>
-
     <script src="/view/js/script.js"></script>
     <script src="/view/js/newCV/newCvVariables.js"></script>
     <script src="/view/js/newCV/newCurriculum.js"></script>
