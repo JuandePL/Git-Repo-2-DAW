@@ -37,48 +37,7 @@
     <?php include "templates/footer.php" ?>
 
     <script src="/view/js/script.js"></script>
-    <script>
-        // Ocultar mensaje
-        document.getElementById('close-box').onclick = () => document.getElementById('successBox').style.display = 'none'
-
-
-        // Obtener info CVs
-        const curriculumsDiv = document.getElementById('curriculums')
-        curriculumsDiv.innerHTML = ''
-
-        // Peticion AJAX para obtener info de CVs
-        $.ajax({
-            type: "GET",
-            url: "/controller/CVController.php?getCVDescriptionsAndDates=true",
-            success: dataArray => {
-                // Parsear string JSON a objeto
-                const dataJson = JSON.parse(dataArray)
-
-                // Recorrer JSON
-                dataJson.forEach(obj => {
-                    let id, description, createdAt
-
-                    // Por cada CV que haya, sacar sus datos
-                    Object.entries(obj).forEach(([key, value]) => {
-                        if (key == 'cv_id') id = value
-                        if (key == 'description') description = value
-                        if (key == 'created_at') createdAt = new Date(value)
-                    });
-                    curriculumsDiv.innerHTML += `
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">${description}</h5>
-                            <p class="card-subtitle text-muted">
-                                Creado el ${createdAt.toLocaleDateString(dateOptions)}
-                                a las ${createdAt.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
-                            </p>
-                            <a href="/view/curriculum.php/${id}" class="stretched-link"></a>
-                        </div>
-                    </div>`
-                });
-            }
-        })
-    </script>
+    <script src="/view/js/myCurriculums.js"></script>
 </body>
 
 </html>
