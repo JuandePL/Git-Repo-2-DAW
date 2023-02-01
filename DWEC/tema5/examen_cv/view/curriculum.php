@@ -65,6 +65,7 @@
 
     <?php include "templates/footer.php" ?>
 
+    <script src="/view/js/script.js"></script>
     <script src="/view/js/curriculum.js"></script>
 </body>
 

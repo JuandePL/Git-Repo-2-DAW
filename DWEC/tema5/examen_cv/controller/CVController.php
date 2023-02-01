@@ -5,6 +5,8 @@ $isNew = isset($_GET['isNew']) ? $_GET['isNew'] : false;
 $getWorkerData = isset($_GET['getWorkerData']) ? $_GET['getWorkerData'] : false;
 $getCVDescriptionsAndDates = isset($_GET['getCVDescriptionsAndDates']) ? $_GET['getCVDescriptionsAndDates'] : false;
 $getCurriculumById = isset($_GET['getCurriculumById']) ? $_GET['getCurriculumById'] : false;
+$deleteCvById = isset($_GET['deleteCvById']) ? $_GET['deleteCvById'] : false;
+$editCv = isset($_GET['editCv']) ? $_GET['editCv'] : false;
 
 // Para crear curriculums nuevos
 if ($isNew) {
@@ -51,6 +53,35 @@ if ($getCurriculumById) {
         echo $query ? json_encode($query[0]) : "false";
     } catch (Throwable $th) {
         //throw $th;
+        echo "false";
+    }
+}
+
+// Para eliminar los datos de un curriculum
+if ($deleteCvById) {
+    try {
+        $query = DB::prepare("DELETE FROM cvs WHERE cv_id = ?", array($_GET['deleteCvById']));
+        echo "true";
+    } catch (Throwable $th) {
+        //throw $th;
+        echo "false";
+    }
+}
+
+// Para editar curriculums existentes
+if ($editCv) {
+    $description = $_POST['description'];
+    $curriculumJson = json_encode($_POST['curriculumJson'], JSON_UNESCAPED_UNICODE);
+    $curriculumId = $_POST['curriculumId'];
+
+    try {
+        $query = DB::prepare(
+            "UPDATE cvs SET description = ?, json_data = ? WHERE cv_id = ?",
+            array($description, $curriculumJson, $curriculumId)
+        );
+        echo "true";
+    } catch (Throwable $th) {
+        // throw $th;
         echo "false";
     }
 }

@@ -128,6 +128,53 @@ function showEmptyValuesListHTML(emptyValues) {
 }
 
 form.onsubmit = (evt) => {
+    // Si hay campos sin rellenar, los muestra por pantalla
+    if (checkFormValues()) {
+        evt.preventDefault()
+
+        // Enviar formulario a PHP
+        // Peticion ajax a server para subir CV a base de datos
+        $.ajax({
+            type: "POST",
+            url: '/controller/CVController.php?&isNew=true',
+            data: {
+                "description": jobElement.value,
+                "curriculumJson": createCurriculumJson()
+            },
+            success: isCreatedSuccesfully => {
+                if (isCreatedSuccesfully === 'true') {
+                    hideErrorBox()
+                    removeCache()
+                    window.location.href = "/view/myCurriculums.php?success=El CV fue creado correctamente"
+                } else {
+                    showErrorBox('Ocurrió un error intentando crear el CV.')
+                }
+            }
+        })
+    } else {
+        evt.preventDefault()
+        showEmptyValuesListHTML(emptyValues)
+    }
+}
+
+function createCurriculumJson() {
+    return {
+        "personalData": {
+            "name": nameElement.value,
+            "surname": surnameElement.value,
+            "email": emailElement.value,
+            "location": locationElement.value,
+            "phone": phoneElement.value,
+            "jobToLookFor": jobElement.value,
+            "aboutMe": aboutMeElement.value
+        },
+        formation: formation.list,
+        experience: experience.list,
+        language: language.list,
+    }
+}
+
+function checkFormValues() {
     const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     let emptyValues = []
 
@@ -150,46 +197,5 @@ form.onsubmit = (evt) => {
     if (experience.list.length === 0) emptyValues.push('Experiencia')
     if (language.list.length === 0) emptyValues.push('Idiomas')
 
-    // Si hay campos sin rellenar, los muestra por pantalla
-    if (emptyValues.length !== 0) {
-        evt.preventDefault()
-        showEmptyValuesListHTML(emptyValues)
-    } else {
-        evt.preventDefault()
-
-        // Enviar formulario a PHP
-        const curriculumJson = {
-            "personalData": {
-                "name": nameElement.value,
-                "surname": surnameElement.value,
-                "email": emailElement.value,
-                "location": locationElement.value,
-                "phone": phoneElement.value,
-                "jobToLookFor": jobElement.value,
-                "aboutMe": aboutMeElement.value
-            },
-            formation: formation.list,
-            experience: experience.list,
-            language: language.list,
-        }
-
-        // Peticion ajax a server para subir CV a base de datos
-        $.ajax({
-            type: "POST",
-            url: '/controller/CVController.php?&isNew=true',
-            data: {
-                "description": jobElement.value,
-                "curriculumJson": curriculumJson
-            },
-            success: isCreatedSuccesfully => {
-                if (isCreatedSuccesfully === 'true') {
-                    hideErrorBox()
-                    removeCache()
-                    window.location.href = "/view/myCurriculums.php?success=El CV fue creado correctamente"
-                } else {
-                    showErrorBox('Ocurrió un error intentando crear el CV.')
-                }
-            }
-        })
-    }
+    return emptyValues.length === 0;
 }

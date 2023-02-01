@@ -258,6 +258,7 @@
     <script src="/view/js/script.js"></script>
     <script src="/view/js/newCV/newCvVariables.js"></script>
     <script src="/view/js/newCV/newCurriculum.js"></script>
+    <script src="/view/js/newCV/editCurriculum.js"></script>
     <script src="/view/js/newCV/newCvFormationSection.js"></script>
     <script src="/view/js/newCV/newCvExperienceSection.js"></script>
     <script src="/view/js/newCV/newCvLanguagesSection.js"></script>
