@@ -23,14 +23,24 @@ class Tatoo {
      */
     private $description;
 
-    #[ORM\ManyToMany("Tatoo", "tatoosWithTag")]
-    #[ORM\JoinTable("TatooTag")]
+    /**
+        @ORM\ManyToMany(targetEntity="TatooTag")
+        @ORM\JoinTable(name="tatoo_has_tags",
+            joinColumns={@ORM\JoinColumn(name="tatoo_id", referencedColumnName="id")},
+            inverseJoinColumns={@ORM\JoinColumn(name="tag_name", referencedColumnName="name")}    
+        )
+     */
     private $tags;
 
     /**
         @ORM\Column(type="string", length="100")
      */
     private $imageUrl;
+
+    /**
+        @ORM\Column(type="integer")
+     */
+    private $price;
 
     public function getId() {
         return $this->id;
@@ -75,5 +85,13 @@ class Tatoo {
     public function setImageUrl($imageUrl) {
         $this->imageUrl = $imageUrl;
         return $this;
+    }
+
+    public function getPrice() {
+        return $this->price;
+    }
+
+    public function setPrice($price) {
+        $this->price = $price;
     }
 }

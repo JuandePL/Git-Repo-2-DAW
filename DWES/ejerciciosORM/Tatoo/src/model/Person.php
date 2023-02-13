@@ -1,9 +1,13 @@
 <?php
+require_once __DIR__ . '/PersonRoles.php';
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-    @ORM\Entity
+    @ORM\Entity(repositoryClass="PersonRepository")
+    @ORM\Table(uniqueConstraints={
+        @ORM\UniqueConstraint(name="person_uk", columns={"name", "email"})
+    })
  */
 class Person {
     /**
@@ -24,6 +28,11 @@ class Person {
     private $email;
 
     /**
+        @ORM\Column(type="string", length="100")
+     */
+    private $password;
+
+    /**
         @ORM\Column(type="integer")
      */
     private $phone;
@@ -37,6 +46,11 @@ class Person {
         @ORM\Column(type="string", length="100")
      */
     private $city;
+
+    /**
+        @ORM\Column(type="string", length="50")
+     */
+    private $role;
 
     function __construct() {
     }
@@ -60,6 +74,15 @@ class Person {
 
     public function setEmail($email) {
         $this->email = $email;
+        return $this;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
         return $this;
     }
 
@@ -87,6 +110,15 @@ class Person {
 
     public function setCity($city) {
         $this->city = $city;
+        return $this;
+    }
+
+    public function getRole() {
+        return $this->role;
+    }
+
+    public function setRole($role) {
+        $this->role = $role;
         return $this;
     }
 

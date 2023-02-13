@@ -23,3 +23,12 @@ $connectionBD = DriverManager::getConnection([
 ], $config);
 
 $entityManager = new EntityManager($connectionBD, $config);
+
+
+
+// REPOS
+require_once __DIR__ . '/src/app/PersonRepository.php';
+// require_once __DIR__ . '/src/model/TatooerRepository.php';
+
+$personRepo = $entityManager->getRepository("Person");
+// $tatooerRepo = $entityManager->getRepository("Tatooer");

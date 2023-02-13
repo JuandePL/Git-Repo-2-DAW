@@ -1,8 +1,8 @@
-@import url('view/css/header.css');
-@import url('view/css/button.css');
-@import url('view/css/profileCard.css');
-@import url('view/css/tourneyCard.css');
-@import url('view/css/event.css');
+@import url('src/view/css/header.css');
+@import url('src/view/css/button.css');
+@import url('src/view/css/profileCard.css');
+@import url('src/view/css/tourneyCard.css');
+@import url('src/view/css/event.css');
 
 /*** Formulario ***/
 .userForm {

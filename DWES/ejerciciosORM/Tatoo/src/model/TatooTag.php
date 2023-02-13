@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
     @ORM\Entity
  */
-class TatooTag {        
+class TatooTag {
     /**
         @ORM\Id
         @ORM\Column(type="string", length="255")
