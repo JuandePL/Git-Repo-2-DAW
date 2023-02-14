@@ -10,12 +10,12 @@
 
 <header>
   <?php if (isset($user)) { ?>
-    <a href="/view/profile.php">
+    <!-- <a href="/view/profile.php">
       <div id="userBox">
-        <p id="username"><?php echo 'usuario' ?></p>
+        <p id="username"><?php echo $user->getName() ?></p>
         <img id="imgUser" src=<?php echo 'imagen' ?> alt="">
       </div>
-    </a>
+    </a> -->
   <?php } ?>
 
   <div class="bg-header"><span class='whitebold'><a href="/">Tatoos</a></span></div>
@@ -35,7 +35,12 @@
     }
 
     addToNav('Inicio', '/index.php');
-    addToNav('Login', '/src/view/login.php');
+
+    if ($user) {
+      addToNav('Cerrar sesión', '/src/app/SessionController.php?isLogout=true');
+    } else {
+      addToNav('Login', '/src/view/login.php');
+    }
     ?>
   </nav>
 </header>

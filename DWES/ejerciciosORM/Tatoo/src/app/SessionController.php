@@ -7,28 +7,27 @@ require_once __DIR__ . '/image.php';
 $isLogin = isset($_GET['isLogin']) ? $_GET['isLogin'] : false;
 $isRegister = isset($_GET['isRegister']) ? $_GET['isRegister'] : false;
 $isLogout = isset($_GET['isLogout']) ? $_GET['isLogout'] : false;
-$user = getUserFromSession(getSessionValue());
+$user = getUserFromSession($personRepo);
 
 function getSessionValue() {
     return "userId";
 }
 
-function getUserFromSession() {
+function getUserFromSession($personRepo) {
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
 
-    return isset($_SESSION[getSessionValue()]) ? $personRepo->findById($_SESSION[getSessionValue()]) : null;
+    return isset($_SESSION[getSessionValue()]) ? $personRepo->find($_SESSION[getSessionValue()]) : null;
 }
 
 // Comprobar si el usuario quiere iniciar sesión
 if ($isLogin) {
-    $isEmail = isset($_GET['isEmail']) ? (bool) $_GET['isEmail'] : false;
-    $password = isset($_POST['password']) ?  hash("sha256", $_POST['password']) : false;
+    $email = isset($_POST['email']) ? $_POST['email'] : null;
+    $password = isset($_POST['password']) ?  hash("sha256", $_POST['password']) : null;
 
     // Comprobar si es email o usuario
-    $username = isset($_POST['username']) ? $_POST['username'] : false;
-    initSessionWithUsername($username, $password);
+    initSession($email, $password, $personRepo);
 }
 
 // Comprobar si el usuario ha cerrado sesión
@@ -36,69 +35,45 @@ if ($isLogout) {
     session_start();
     $_SESSION[getSessionValue()] = null;
     session_destroy();
-    header("Location:./");
+    header("Location:../../");
 }
 
 // Comprobar si el usuario quiere registrarse
 if ($isRegister) {
-    $username = isset($_POST['username']) ? $_POST['username'] : false;
     $email = isset($_POST['email']) ? $_POST['email'] : false;
+    $name = isset($_POST['name']) ? $_POST['name'] : false;
     $password = isset($_POST['password']) ?  hash("sha256", $_POST['password']) : false;
     $confirmPassword = isset($_POST['confirmPassword']) ?  hash("sha256", $_POST['confirmPassword']) : false;
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : false;
+    $address = isset($_POST['address']) ? $_POST['address'] : false;
+    $city = isset($_POST['city']) ? $_POST['city'] : false;
+    $isTatooer = isset($_POST[PersonRoles::Tatooer->name]);
+    $role = $isTatooer ? PersonRoles::Tatooer->name : PersonRoles::Client->name;
 
     if ($password !== $confirmPassword) {
         header('Location:../view/register.php?error=Las contraseñas no coinciden');
         return;
     }
 
-    $registerResult = $personRepo->registerPerson($email, $username, $name, $surname, $password);
+    $registerResult = $personRepo->register($email, $name, $password, $phone, $address, $city, $isTatooer, $role);
 
     // Si el registro falla, muestra el fallo
-    if (is_string($registerResult)) {
-        header('Location:../view/login.php?error=' . $registerResult);
+    if (is_null($registerResult)) {
+        header('Location:../view/register.php?error=No se pudo registrar al usuario');
         return;
     }
 
-    initSession($username);
+    initSession($email, $password, $personRepo);
 }
 
-/**
- * Funcion para iniciar sesion en la pagina web.
- * @param string $username Username.
- * @param string $password Password.
- */
-function initSessionWithUsername($username, $password) {
-    $logged = tryUserLogin($username, $password);
-
-    if ($logged === true) {
-        initSession($username);
+function initSession($email, $password, $personRepo) {
+    $user = $personRepo->login($email, $password);
+    
+    if ($user) {
+        $_SESSION[getSessionValue()] = $user->getId();
+        getUserFromSession($personRepo);
+        header("Location:../../");
     } else {
-        header('Location:../view/login.php?error=' . $logged);
+        header('Location:../view/login.php?error=Las credenciales son incorrectas');
     }
-}
-
-function initSession($username) {
-    session_start();
-    $_SESSION[getSessionValue()] = PersonRepository::fetchUserByUsername($username)->id;
-    header("Location:../");
-}
-
-/**
- * Try to log an user, given username and password.
- * This will return true if username exist and password is correct, false otherwise.
- * @param string $username Username.
- * @param string $pass Password.
- * @return mixed True if succesfully logged, Error string if error
- */
-function tryUserLogin(string $username, string $pass) {
-    $user = PersonRepository::fetchUserByUsername($username);
-
-    if (!$user) {
-        return "El usuario <b>$username</b> no existe.";
-    }
-    if ($pass !== $user->password) {
-        return "La contraseña es incorrecta.";
-    }
-
-    return true;
 }

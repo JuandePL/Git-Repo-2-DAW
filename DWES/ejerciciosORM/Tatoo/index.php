@@ -10,7 +10,7 @@ require_once './src/view/modules/header.php'
   <main>
     <h1>Bienvenido</h1>
     <?php
-    echo PersonRoles::Client->name;
+    echo $user ?? PersonRoles::Client->name;
     ?>
   </main>
 </body>

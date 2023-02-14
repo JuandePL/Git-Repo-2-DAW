@@ -21,13 +21,29 @@ button {
     text-align: center;
 }
 
+.error {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+
+    text-align: center;
+    margin-top: 2em;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
 .col-30 {
     display: inline-block;
-    width: 30%;
+    width: 35%;
+}
+
+form .col-30 {
+    text-align: end;
+    margin-right: 1em;
 }
 
 .col-60 {
-    width: 60%;
+    width: 55%;
 }
 
 .center {
@@ -87,7 +103,7 @@ button {
 }
 
 #btnBack {
-  background-color: rgb(206, 206, 206);
+    background-color: rgb(206, 206, 206);
 }
 
 /*** Main ***/
@@ -146,8 +162,7 @@ main {
 /* Responsive main */
 @media screen and (max-width: 900px) {
     main {
-        width: calc(100% - 20px);
-        padding-left: 20px;
+        width: 100%;
     }
 
     .bg-img {
