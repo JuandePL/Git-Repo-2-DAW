@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tatooer extends Person {
     /**
-        @ORM\ManyToOne(targetEntity="Tatoo", inversedBy="createdBy")
+        @ORM\OneToMany(targetEntity="Tatoo", mappedBy="createdBy")
      */
     private $tatoos;
 

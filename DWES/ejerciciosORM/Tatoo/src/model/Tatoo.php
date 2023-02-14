@@ -42,6 +42,12 @@ class Tatoo {
      */
     private $price;
 
+    /**
+        @ORM\ManyToOne(targetEntity="Tatooer", inversedBy="tatoos")
+        @ORM\JoinColumn(name="tatooer")
+     */
+    private $tatooOwner;
+
     public function getId() {
         return $this->id;
     }
@@ -93,5 +99,15 @@ class Tatoo {
 
     public function setPrice($price) {
         $this->price = $price;
+        return $this;
+    }
+
+    public function getTatooOwner() {
+        return $this->tatooOwner;
+    }
+
+    public function setTatooOwner($tatooOwner) {
+        $this->tatooOwner = $tatooOwner;
+        return $this;
     }
 }
