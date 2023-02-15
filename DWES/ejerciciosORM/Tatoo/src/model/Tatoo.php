@@ -44,7 +44,7 @@ class Tatoo {
 
     /**
         @ORM\ManyToOne(targetEntity="Tatooer", inversedBy="tatoos")
-        @ORM\JoinColumn(name="tatooer")
+        @ORM\JoinColumn(name="tatooer_id")
      */
     private $tatooOwner;
 

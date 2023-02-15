@@ -4,6 +4,7 @@ require_once __DIR__ . '/PersonRoles.php';
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+    @ORM\MappedSuperclass
     @ORM\Entity(repositoryClass="PersonRepository")
     @ORM\Table(uniqueConstraints={
         @ORM\UniqueConstraint(name="person_uk", columns={"name", "email"})

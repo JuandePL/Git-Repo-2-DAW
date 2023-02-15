@@ -25,7 +25,7 @@ class Purchase {
             inverseJoinColumns={@ORM\JoinColumn(name="tatoo_with_rating_id")}
         )
      */
-    private $tatooList;
+    private $purchaseList;
 
     /**
         @ORM\Column(type="integer")
@@ -50,12 +50,12 @@ class Purchase {
         return $this;
     }
 
-    public function getTatooList() {
-        return $this->tatooList;
+    public function getPurchaseList() {
+        return $this->purchaseList;
     }
 
-    public function setTatooList($tatoolist) {
-        $this->tatooList = $tatoolist;
+    public function setPurchaseList($purchaselist) {
+        $this->purchaseList = $purchaselist;
         return $this;
     }
 
