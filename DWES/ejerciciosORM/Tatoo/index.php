@@ -12,6 +12,12 @@ require_once './src/view/modules/header.php'
     <?php
     echo $user ?? PersonRoles::Client->name;
     ?>
+
+    <h3>Tatuador con mas ventas</h3>
+    <?php
+    $tatooer = $tatooerRepo->mostSellerTatooer();
+    print_r($tatooer);
+    ?>
   </main>
 </body>
 

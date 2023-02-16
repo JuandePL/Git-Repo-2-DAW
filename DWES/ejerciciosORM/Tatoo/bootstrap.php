@@ -28,7 +28,7 @@ $entityManager = new EntityManager($connectionBD, $config);
 
 // REPOS
 require_once __DIR__ . '/src/app/PersonRepository.php';
-// require_once __DIR__ . '/src/model/TatooerRepository.php';
+require_once __DIR__ . '/src/app/TatooerRepository.php';
 
 $personRepo = $entityManager->getRepository("Person");
-// $tatooerRepo = $entityManager->getRepository("Tatooer");
+$tatooerRepo = $entityManager->getRepository("Tatooer");

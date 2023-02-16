@@ -4,6 +4,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
     @ORM\Entity
+    @ORM\Entity(repositoryClass="TatooerRepository")
  */
 class Tatooer extends Person {
     /**
@@ -13,6 +14,7 @@ class Tatooer extends Person {
 
     public function __construct() {
         $this->setRole(PersonRoles::Tatooer->name);
+        $this->setTatoos([]);
     }
 
     public function getTatoos() {
