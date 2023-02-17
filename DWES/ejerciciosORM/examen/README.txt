@@ -1,0 +1,1 @@
+para crear las tablas con sus datos, ejecutar comando: composer run create

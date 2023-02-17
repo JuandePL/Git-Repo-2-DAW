@@ -1,0 +1,21 @@
+{
+    "require": {
+        "doctrine/orm": "^2.14",
+	"doctrine/annotations": "^1.0",
+        "symfony/yaml": "^5.4",
+        "symfony/cache": "^5.4"
+    },
+    "autoload": {
+        "psr-0": {"": "../Entity"}
+    },
+    "scripts": {
+        "create": [
+            "php vendor/bin/doctrine orm:schema-tool:create",
+            "php ../createData.php"
+        ],
+        "update": "php vendor/bin/doctrine orm:schema-tool:update --force --complete",
+        "drop": "php vendor/bin/doctrine orm:schema-tool:drop --force",
+        "dropDB": "php vendor/bin/doctrine orm:schema-tool:drop --full-database --force",
+        "dump": "php vendor/bin/doctrine orm:schema-tool:create --dump-sql"
+    }
+}
