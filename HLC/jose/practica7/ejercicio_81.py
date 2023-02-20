@@ -13,13 +13,11 @@ for i in range(5):
     # Si la diferencia del numero actual y el primero es mayor que el guardado
     # o es el segundo numero en introducirse
     # se guardara como el numero que mas cerca esta del primero
-    diferenciaActual = abs(num - numeros[0])
-    diferenciaMasCercano = abs(num - numeroMasCercano)
-    print(f'actual: {diferenciaActual} - cercano: {diferenciaMasCercano} - numeroCercano: {numeroMasCercano}')
+    diferenciaActual = abs(numeros[0] - num)
+    diferenciaMasCercano = abs(numeros[0] - numeroMasCercano)
 
     if (diferenciaActual < diferenciaMasCercano) or i == 1:
         numeroMasCercano = num
-    print(f'numeroCercano 2: {numeroMasCercano}')
 
 print(f'\nNúmeros: {numeros}')
 print(f'Número más cercano: {numeroMasCercano}')
