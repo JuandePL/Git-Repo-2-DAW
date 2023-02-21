@@ -1,1 +1,1 @@
-for dir in $(find . -name ".git"); do cd ${dir%/*}; git pull ; cd -; done
+for dir in $(find . -name ".git"); do cd ${dir%/*}; git pull ; cd -; done 
